@@ -6,7 +6,7 @@ import {ReqQuery} from "../../routes/types/reqTypes";
 import {chStr, queryGetMiddleware} from "../global/queryGetMiddleware";
 
 
-function checkSB(sb: QueryBlogInputModel["sortBy"]) {
+function checkSB(sb: QueryBlogInputModel["sortBy"]): boolean {
     return chStr(sb) && blogFields.hasOwnProperty(sb);
 } // Проверка правильности входящего поля сортировки
 

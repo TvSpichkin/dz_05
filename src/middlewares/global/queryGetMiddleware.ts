@@ -4,19 +4,19 @@ import {QueryInputModel, SortDirections} from "../../routes/types/queryTypes";
 import {ReqQuery} from "../../routes/types/reqTypes";
 
 
-export function chStr(str: any) {
+export function chStr(str: any): boolean {
     return typeof str === "string";
 } // Проверка на строку
 
-function checkSD(sd: QueryInputModel["sortDirection"]) {
+function checkSD(sd: QueryInputModel["sortDirection"]): boolean {
     return chStr(sd) && SortDirections.hasOwnProperty(sd);
 } // Проверка правильности входящего направления сортировки
 
-function checkPN(pn: QueryInputModel["pageNumber"]) {
+function checkPN(pn: QueryInputModel["pageNumber"]): boolean {
     return chStr(pn) && Number.isInteger(+pn) && pn > 0;
 } // Проверка правильности входящего номера страницы
 
-function checkPS(ps: QueryInputModel["pageSize"]) {
+function checkPS(ps: QueryInputModel["pageSize"]): boolean {
     return checkPN(ps) && ps < SET.MaxLen.QUERY.PageSize;
 } // Проверка правильности входящего размера страницы
 
