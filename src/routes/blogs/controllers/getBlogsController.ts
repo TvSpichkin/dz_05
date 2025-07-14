@@ -1,7 +1,7 @@
 import {Response} from "express";
 import {ReqQuery} from "../../types/reqTypes";
 import {QueryBlogInputModel} from "../types/queryBlogTypes";
-import {Paginator} from "../../../domain/paginator";
+import {Paginator} from "../../present/paginator";
 import {BlogViewModel, blogFields, TypeBlogFields} from "../types/blogsTypes";
 import {blogsServ} from "../../../domain/blogsServ";
 
