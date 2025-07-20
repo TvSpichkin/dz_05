@@ -11,7 +11,7 @@ function valueAssigner(w: ProtoFilterType["way"], v: ProtoFilterType["value"]) {
     }
 } // Присваивание значений
 
-export function createFilter<T>(pf: ProtoFilterType[]): Filter<T> {
+export function createFilter<T>(pf: ProtoFilterType<T>[]): Filter<T> {
     const f: Filter<T> = {};
     
     for(let i = 0; i < pf.length; i++) {

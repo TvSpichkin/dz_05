@@ -1,11 +1,13 @@
-import {db} from "../db";
+import {db} from "../../db";
 import {DBType, ProtoFilterType, KeysDB, EntDbType, DbTypeFind, keyIds, EntPutType, TypeEntFields, EntDbTypeA} from "../types/typesRepDB";
 import {TypeSortDir} from "../../IOtypes/queryTypes";
 import {createAggregator, createFilter, createSorter} from "./createFilter";
 
 
-export const queryRep = {
-    async readAll(entKey: KeysDB, es: number, ps: number, sb: TypeEntFields, sd: TypeSortDir, snf: ProtoFilterType[]): Promise<[number, EntDbTypeA[]]> {
+const entKey: KeysDB = "blogs";
+
+export const blogsQueryRep = {
+    async readAll(es: number, ps: number, sb: TypeEntFields, sd: TypeSortDir, snf: ProtoFilterType[]): Promise<[number, EntDbTypeA[]]> {
         const filter = createFilter(snf), // Создание поискового фильтра
         aggregator = createAggregator(entKey, filter), // Создание агрегата
         sorter = createSorter(sb, sd); // Создание сортировщика
