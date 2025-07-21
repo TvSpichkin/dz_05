@@ -13,8 +13,8 @@ export type DBType = {
     blogs: BlogDbType[], // Массив сетевых журналов
     posts: PostDbType[] // Массив записей
 }; // Типизация базы данных (что мы будем в ней хранить)
-export type ProtoFilterType = {
-    key: TypeEntFields, // Поле сущности в БД
+export type ProtoFilterType<T> = {
+    key: keyof (string extends keyof T ? T : Pick<T, never>), // Поле сущности в БД
     value: boolean | number | string, // Значение этого поля
     way: number // Способ задания условия для фильтра
 }; // Типизация исходных данных для генерации фильтра
