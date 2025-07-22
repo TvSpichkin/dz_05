@@ -1,8 +1,8 @@
-import {Document, Filter, Sort} from "mongodb";
-import {EntDbType, KeysDB, ProtoFilterType, TypeEntFields} from "../types/typesRepDB";
+import {Filter} from "mongodb";
+import {ProtoFilterType} from "../types/typesRepDB";
 
 
-function valueAssigner(w: ProtoFilterType["way"], v: ProtoFilterType["value"]) {
+function valueAssigner<T>(w: ProtoFilterType<T>["way"], v: ProtoFilterType<T>["value"]) {
     switch(w) {
         case 1:
             return {$regex: v, $options: "i"};
@@ -15,7 +15,7 @@ export function createFilter<T>(pf: ProtoFilterType<T>[]): Filter<T> {
     const f: Filter<T> = {};
     
     for(let i = 0; i < pf.length; i++) {
-        f[pf[i].key] = valueAssigner(pf[i].way, pf[i].value); // Заполнение фильтра
+        f[pf[i].key] = valueAssigner<T>(pf[i].way, pf[i].value); // Заполнение фильтра
     }
     
     return f;

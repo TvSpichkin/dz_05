@@ -1,3 +1,4 @@
+import { EnhancedOmit, InferIdType, WithId } from "mongodb";
 import {ValueOf} from "../../methodsForTS";
 import {BlogDbPutType, BlogDbType, BlogDbTypeA, blogFields} from "./blogsDbTypes";
 import {PostDbPutType, PostDbType, PostDbTypeA, postFields} from "./postsDbTypes";
@@ -14,7 +15,11 @@ export type DBType = {
     posts: PostDbType[] // Массив записей
 }; // Типизация базы данных (что мы будем в ней хранить)
 export type ProtoFilterType<T> = {
-    key: keyof (string extends keyof T ? T : Pick<T, never>), // Поле сущности в БД
+    key: keyof ((string extends keyof T ? T : T extends any ? Pick<T, never> : never) & {
+    id: never;
+}), // Поле сущности в БД
+    // keyof WithId<T> // keyof EnhancedOmit<T, "_id">
+    // keyof (string extends keyof T ? T : T extends any ? Pick<T, Exclude<keyof T, "_id">> : never)
     value: boolean | number | string, // Значение этого поля
     way: number // Способ задания условия для фильтра
 }; // Типизация исходных данных для генерации фильтра
