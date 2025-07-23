@@ -1,19 +1,19 @@
 import {db} from "../../db";
-import {ProtoFilterType, KeysDB, EntDbTypeA} from "../types/typesRepDB";
+import {ProtoFilterType, KeysDB} from "../types/typesRepDB";
 import {TypeBlogFields} from "../../../routes/blogs/types/blogsTypes";
 import {TypeSortDir} from "../../../routes/types/queryTypes";
-import {createAggregator, createFilter, createSorter} from "./createFilter";
+import { BlogDbType } from "../types/blogsDbTypes";
+import { createFilter } from "../queryCreators/createFilter";
 
 
 const entKey: KeysDB = "blogs";
 
 export const blogsQueryRep = {
-    async readAll(es: number, ps: number, sb: TypeBlogFields, sd: TypeSortDir, snf: ProtoFilterType[]): Promise<[number, EntDbTypeA[]]> {
-        const filter = createFilter(snf), // Создание поискового фильтра
-        aggregator = createAggregator(entKey, filter), // Создание агрегата
+    async readAll(es: number, ps: number, sb: TypeBlogFields, sd: TypeSortDir, snf: ProtoFilterType<BlogDbType>[]): Promise<[number, BlogDbType[]]> {
+        const filter = createFilter<BlogDbType>(snf), // Создание поискового фильтра
         sorter = createSorter(sb, sd); // Создание сортировщика
         
-        return Promise.all([db.collection<EntDbTypeA>(entKey).count(filter), // Извлечение количества элементов удовлетворяющих поисковому фильтру
-            db.collection<EntDbTypeA>(entKey).aggregate<EntDbTypeA>(aggregator).sort(sorter).skip(es).limit(ps).toArray()]); // Извлечение нужной порции сущностей удовлетворяющих поисковому фильтру
+        return Promise.all([db.collection<BlogDbType>(entKey).count(filter), // Извлечение количества элементов удовлетворяющих поисковому фильтру
+            db.collection<BlogDbType>(entKey).find(filter).sort(sorter).skip(es).limit(ps).toArray()]); // Извлечение нужной порции сущностей удовлетворяющих поисковому фильтру
     } // Извлечение всех сущностей
 }; // Работа с базой данных на чтение

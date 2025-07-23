@@ -4,7 +4,7 @@ import {ProtoFilterType, KeysDB, EntDbTypeA} from "./types/typesRepDB";
 import {createFilter} from "./queryCreators/createFilter";
 
 
-export const blogsQueryRep = {
+export const queryRep = {
     async readAll<T extends Document>(entKey: KeysDB, es: number, ps: number, sorter: Sort, snf: ProtoFilterType<T>[]): Promise<[number, T[]]> {
         const filter = createFilter<T>(snf), // Создание поискового фильтра
         aggregator = createAggregator(entKey, filter); // Создание агрегата
