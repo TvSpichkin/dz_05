@@ -1,9 +1,10 @@
 import {db} from "../../db";
-import {ProtoFilterType, KeysDB} from "../types/typesRepDB";
+import {KeysDB, ProtoFilterType} from "../types/typesRepDB";
 import {TypeBlogFields} from "../../../routes/blogs/types/blogsTypes";
 import {TypeSortDir} from "../../../routes/types/queryTypes";
-import { BlogDbType } from "../types/blogsDbTypes";
-import { createFilter } from "../queryCreators/createFilter";
+import {BlogDbType} from "../types/blogsDbTypes";
+import {createFilter} from "../queryCreators/createFilter";
+import {createSorter} from "../queryCreators/createSorter";
 
 
 const entKey: KeysDB = "blogs";
