@@ -15,6 +15,6 @@ export const blogsQueryRep = {
         sorter = createSorter(sb, sd); // Создание сортировщика
         
         return Promise.all([db.collection<BlogDbType>(entKey).count(filter), // Извлечение количества элементов удовлетворяющих поисковому фильтру
-            db.collection<BlogDbType>(entKey).find(filter).sort(sorter).skip(es).limit(ps).toArray()]); // Извлечение нужной порции сущностей удовлетворяющих поисковому фильтру
-    } // Извлечение всех сущностей
+            db.collection<BlogDbType>(entKey).find(filter).sort(sorter).skip(es).limit(ps).toArray()]); // Извлечение нужной порции сетевых журналов удовлетворяющих поисковому фильтру
+    } // Извлечение всех сетевых журналов
 }; // Работа с базой данных на чтение
