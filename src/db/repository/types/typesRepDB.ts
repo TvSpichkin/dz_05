@@ -1,7 +1,5 @@
-import {EnhancedOmit} from "mongodb";
-import {BlogDbPutType, BlogDbType, BlogDbTypeA} from "./blogsDbTypes";
-import {PostDbPutType, PostDbType, PostDbTypeA} from "./postsDbTypes";
-import { TypeBlogFields } from "../../../routes/blogs/types/blogsTypes";
+import {BlogDbType} from "./blogsDbTypes";
+import {PostDbType} from "./postsDbTypes";
 
 
 export type DBType = {
@@ -17,8 +15,4 @@ export type ProtoFilterType<T> = {
 }; // Типизация исходных данных для генерации фильтра
 
 export type KeysDB = keyof DBType; // Ключи БД
-export type EntDbType = BlogDbType | PostDbType; // Тип сущности в БД
-export type EntDbTypeA = BlogDbTypeA | PostDbTypeA; // Тип сущности при извлечении из БД агрегацией
-export type DbTypeFind = EntDbTypeA | null; // Тип извлечённой сущности по идентификатору из БД
 export type keyIds = "id" | "blogId"; // Ключи идентификаторов от сущностей
-export type EntPutType = BlogDbPutType | PostDbPutType; // Тип изменения сущности в БД
