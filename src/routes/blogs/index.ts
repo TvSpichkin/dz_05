@@ -18,8 +18,8 @@ export const blogsRout = express.Router(); // Объявление маршру�
 blogsRout.get("/", ...queryBlogsMWs, getBlogsController); // Возврат всех сетевых журналов
 blogsRout.get("/:id", idNaturalVal, findBlogController); // Возврат сетевого журнала по идентификатору
 blogsRout.post("/", ...blogValidators, createBlogController); // Создание сетевого журнала
-blogsRout.delete("/:id", findBlogValidator, adminMiddleware,  delBlogController); // Удаление сетевого журнала
-blogsRout.put("/:id", findBlogValidator, ...blogValidators, putBlogController); // Изменение сетевого журнала
+blogsRout.delete("/:id", idNaturalVal, adminMiddleware,  delBlogController); // Удаление сетевого журнала
+blogsRout.put("/:id", idNaturalVal, ...blogValidators, putBlogController); // Изменение сетевого журнала
 
-blogsRout.get("/:id/posts", findBlogValidator, ...queryBlogsMWs, getPostsController); // Возврат записей для указанного сетевого журнала
-blogsRout.post("/:id/posts", findBlogValidator, ...postValWithoutBID, createPostController); // Создание записи для указанного сетевого журнала
+blogsRout.get("/:id/posts", idNaturalVal, ...queryBlogsMWs, getPostsController); // Возврат записей для указанного сетевого журнала
+blogsRout.post("/:id/posts", idNaturalVal, ...postValWithoutBID, createPostController); // Создание записи для указанного сетевого журнала
