@@ -16,5 +16,8 @@ export const blogsQueryRep = {
         
         return Promise.all([db.collection<BlogDbType>(entKey).count(filter), // Извлечение количества элементов удовлетворяющих поисковому фильтру
             db.collection<BlogDbType>(entKey).find(filter).sort(sorter).skip(es).limit(ps).toArray()]); // Извлечение нужной порции сетевых журналов удовлетворяющих поисковому фильтру
-    } // Извлечение всех сетевых журналов
+    }, // Извлечение всех сетевых журналов
+    async read(id: number): Promise<BlogDbType | null> {
+        return db.collection<BlogDbType>(entKey).findOne({id: id});
+    } // Извлечение сетевого журнала по идентификатору
 }; // Работа с базой данных на чтение
