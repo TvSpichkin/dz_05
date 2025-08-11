@@ -2,7 +2,7 @@ import {Request, Response, NextFunction} from "express";
 import {SET} from "../../settings";
 
 
-export function fromUTF8ToBase64(code: string) {
+export function fromUTF8ToBase64(code: string): string {
     return btoa(unescape(encodeURIComponent(code)));
 } // Кодирование строки в base64
 
