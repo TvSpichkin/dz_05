@@ -3,7 +3,7 @@ import {queryBlogsMWs} from "../../middlewares/blogs/queryBlogsMWs";
 import {getBlogsController} from "./controllers/getBlogsController";
 import {idNaturalVal} from "../../middlewares/global/idNaturalVal";
 import {findBlogController} from "./controllers/findBlogController";
-import {findBlogValidator, blogValidators} from "./middlewares/blogValidators";
+import {blogValidators} from "../../middlewares/blogs/blogValidators";
 import {createBlogController} from "./controllers/createBlogController";
 import {adminMiddleware} from "../../globalMiddlewares/adminMiddleware";
 import {delBlogController} from "./controllers/delBlogController";

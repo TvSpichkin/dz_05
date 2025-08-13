@@ -1,6 +1,7 @@
 import {body} from "express-validator";
 import {SET} from "../../settings";
 import {adminMiddleware} from "../global/adminMiddleware";
+import {inputCheckErrorsMiddleware} from "../global/inputCheckErrorsMiddleware";
 
 
 function isURL(url: string): boolean {
