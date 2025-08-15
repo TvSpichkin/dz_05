@@ -14,4 +14,7 @@ export const repBD = {
         
         return entity.id;
     }, // Запись сетевого журнала в БД
+    async remove(id: number) {
+        await db.collection<BlogDbType>(entKey).deleteOne({"id": id});
+    }, // Удаление сетевого журнала из БД
 }; // Работа с базой данных для сетевого журнала
