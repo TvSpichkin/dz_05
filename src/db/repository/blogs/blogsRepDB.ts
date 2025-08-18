@@ -1,11 +1,11 @@
-import {db} from "../db";
-import {KeysDB} from "./types/typesRepDB";
-import {BlogDbType, BlogDbPutType} from "./types/blogsDbTypes";
+import {db} from "../../db";
+import {KeysDB} from "../types/typesRepDB";
+import {BlogDbType, BlogDbPutType} from "../types/blogsDbTypes";
 
 
 const entKey: KeysDB = "blogs";
 
-export const repBD = {
+export const blogsRepDB = {
     async write(entity: BlogDbType): Promise<number> {
         const endId = await db.collection<BlogDbType>(entKey).find({}).sort({$natural: -1}).limit(1).toArray();
         
