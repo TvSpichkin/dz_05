@@ -22,4 +22,12 @@ export const blogsServ = {
         //await repBD.remove("posts", "blogId", +id);
         await blogsRepDB.remove(+id);
     }, // Удаление сетевого журнала и всех его записей
+    async put(blog: BlogInputModel, id: string) {
+        const putBlog: BlogDbPutType = {
+            name: blog.name,
+            description: blog.description,
+            websiteUrl: blog.websiteUrl
+        };
+        await blogsRepDB.edit(putBlog, +id);
+    } // Обновление данных сетевого журнала
 }; // Изменение сетевых журналов
