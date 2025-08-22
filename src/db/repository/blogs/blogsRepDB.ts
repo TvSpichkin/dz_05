@@ -6,6 +6,9 @@ import {BlogDbType, BlogDbPutType} from "../types/blogsDbTypes";
 const entKey: KeysDB = "blogs";
 
 export const blogsRepDB = {
+    async check(id: number): Promise<boolean> {
+        return db.collection<BlogDbType>(entKey).find({id: id}).hasNext();
+    }, // Проверка на существование сетевого журнала в БД
     async write(entity: BlogDbType): Promise<number> {
         const endId = await db.collection<BlogDbType>(entKey).find({}).sort({$natural: -1}).limit(1).toArray();
         

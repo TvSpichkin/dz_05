@@ -5,7 +5,7 @@ import {idNaturalVal} from "../../middlewares/global/idNaturalVal";
 import {findBlogController} from "./controllers/findBlogController";
 import {blogValidators} from "../../middlewares/blogs/blogValidators";
 import {createBlogController} from "./controllers/createBlogController";
-import {adminMiddleware} from "../../globalMiddlewares/adminMiddleware";
+import {adminMiddleware} from "../../middlewares/global/adminMiddleware";
 import {delBlogController} from "./controllers/delBlogController";
 import {putBlogController} from "./controllers/putBlogController";
 import {getPostsController} from "../posts/controllers/getPostsController";

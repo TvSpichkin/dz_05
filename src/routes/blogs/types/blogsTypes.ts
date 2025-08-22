@@ -29,4 +29,4 @@ export enum blogFields {
     isMembership = "isMembership" // Подписка на членство в сетевом журнале
 }; // Возможные поля сетевого журнала
 
-export type TypeBlogFields = keyof typeof blogFields;
+export type TypeBlogFields = keyof typeof blogFields; // Тип возможных полей сетевого журнала

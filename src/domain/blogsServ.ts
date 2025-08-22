@@ -18,11 +18,17 @@ export const blogsServ = {
         
         return newBlog;
     }, // Создание сетевого журнала
-    async del(id: string) {
-        //await repBD.remove("posts", "blogId", +id);
-        await blogsRepDB.remove(+id);
+    async del(id: number): Promise<boolean> {
+        const isExist = await blogsRepDB.check(id);
+        
+        if(isExist) {
+            //await repBD.remove("posts", "blogId", +id);
+            await blogsRepDB.remove(id);
+        }
+        
+        return isExist;
     }, // Удаление сетевого журнала и всех его записей
-    async put(blog: BlogInputModel, id: string) {
+    async put(blog: BlogInputModel, id: number) {
         const putBlog: BlogDbPutType = {
             name: blog.name,
             description: blog.description,
