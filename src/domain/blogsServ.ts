@@ -28,12 +28,16 @@ export const blogsServ = {
         
         return isExist;
     }, // Удаление сетевого журнала и всех его записей
-    async put(blog: BlogInputModel, id: number) {
-        const putBlog: BlogDbPutType = {
+    async put(blog: BlogInputModel, id: number): Promise<boolean> {
+        const isExist = await blogsRepDB.check(id),
+        putBlog: BlogDbPutType = {
             name: blog.name,
             description: blog.description,
             websiteUrl: blog.websiteUrl
         };
-        await blogsRepDB.edit(putBlog, +id);
+        
+        if(isExist) await blogsRepDB.edit(putBlog, id);
+        
+        return isExist;
     } // Обновление данных сетевого журнала
 }; // Изменение сетевых журналов

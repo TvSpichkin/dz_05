@@ -8,9 +8,9 @@ import {createBlogController} from "./controllers/createBlogController";
 import {adminMiddleware} from "../../middlewares/global/adminMiddleware";
 import {delBlogController} from "./controllers/delBlogController";
 import {putBlogController} from "./controllers/putBlogController";
-import {getPostsController} from "../posts/controllers/getPostsController";
-import {postValWithoutBID} from "../posts/middlewares/postValidators";
-import {createPostController} from "../posts/controllers/createPostController";
+// import {getPostsController} from "../posts/controllers/getPostsController";
+// import {postValWithoutBID} from "../posts/middlewares/postValidators";
+// import {createPostController} from "../posts/controllers/createPostController";
 
 
 export const blogsRout = express.Router(); // Объявление маршрутизатора сетевых журналов
@@ -21,5 +21,5 @@ blogsRout.post("/", ...blogValidators, createBlogController); // Создани�
 blogsRout.delete("/:id", idNaturalVal, adminMiddleware,  delBlogController); // Удаление сетевого журнала
 blogsRout.put("/:id", idNaturalVal, ...blogValidators, putBlogController); // Изменение сетевого журнала
 
-blogsRout.get("/:id/posts", idNaturalVal, ...queryBlogsMWs, getPostsController); // Возврат записей для указанного сетевого журнала
-blogsRout.post("/:id/posts", idNaturalVal, ...postValWithoutBID, createPostController); // Создание записи для указанного сетевого журнала
+// blogsRout.get("/:id/posts", idNaturalVal, ...queryBlogsMWs, getPostsController); // Возврат записей для указанного сетевого журнала
+// blogsRout.post("/:id/posts", idNaturalVal, ...postValWithoutBID, createPostController); // Создание записи для указанного сетевого журнала
