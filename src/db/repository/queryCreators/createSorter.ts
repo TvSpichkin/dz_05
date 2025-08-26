@@ -3,7 +3,7 @@ import {TypeSortDir} from "../../../routes/types/queryTypes";
 
 
 function dirSort(d: TypeSortDir): 1 | -1 {
-    return d[3] ? -1 : 1;
+    return d?.[3] ? -1 : 1;
 } // Задание направления сортировки для БД
 
 
