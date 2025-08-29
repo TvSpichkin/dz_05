@@ -20,4 +20,4 @@ export const blogsQueryRep = {
     async read(id: number): Promise<BlogDbType | null> {
         return db.collection<BlogDbType>(entKey).findOne({id: id});
     } // Извлечение сетевого журнала по идентификатору
-}; // Работа с базой данных на чтение
+}; // Работа с базой данных на чтение сетевых журналов
