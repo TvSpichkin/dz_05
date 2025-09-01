@@ -18,4 +18,9 @@ export const repBD = {
         return Promise.all([db.collection<PostDbType>(entKey).count(filter), // Извлечение количества элементов удовлетворяющих поисковому фильтру
             db.collection<PostDbTypeA>(entKey).aggregate<PostDbTypeA>(aggregator).sort(sorter).skip(es).limit(ps).toArray()]); // Извлечение нужной порции записей удовлетворяющих поисковому фильтру
     }, // Извлечение всех записей
+    async read(id: number): Promise<PostDbTypeA | null> {
+        const aggregator = createAggregator(entKey, {id: id}); // Создание агрегата
+        
+        return (await db.collection<PostDbTypeA>(entKey).aggregate<PostDbTypeA>(aggregator).toArray())[0];
+    } // Извлечение записи по идентификатору
 }; // Работа с базой данных на чтение записей
