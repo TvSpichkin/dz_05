@@ -1,7 +1,7 @@
 import express, {Request, Response} from "express";
 import {SET} from "./settings";
 import {blogsRout} from "./routes/blogs";
-// import {postsRout} from "./features/posts";
+import {postsRout} from "./routes/posts";
 // import {testRout} from "./features/testing";
 
 export const app = express(); // Определение экспресс приложения
@@ -13,5 +13,5 @@ app.get("/", (req: Request, res: Response) => {
 }); // Проверка успешного запуска сервера
 
 app.use(SET.PATH.BLOGS, blogsRout); // Подключение маршрутизатора сетевых журналов
-// app.use(SET.PATH.POSTS, postsRout); // Подключение маршрутизатора записей
+app.use(SET.PATH.POSTS, postsRout); // Подключение маршрутизатора записей
 // app.use(SET.PATH.TESTING, testRout); // Подключение маршрутизатора тестирования
