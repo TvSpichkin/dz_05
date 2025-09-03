@@ -31,5 +31,7 @@ export function queryGetMiddleware(req: ReqQuery<QueryInputModel>, res: Response
     if(checkPS(q.pageSize)) q.pageSize = +q.pageSize;
     else q.pageSize = 10; // Задание исходного значения размера страницы
     
+    Object.defineProperty(req, 'query', {value: q}); // Возвращение к объекту запроса вместо приобретателя (перезапись поля)
+    
     next(); // Передача управления дальше
 } // Общая обработка запросов с вопросом на правильные значения

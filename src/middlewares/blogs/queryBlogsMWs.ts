@@ -20,9 +20,7 @@ function queryGetBlogsMW(req: ReqQuery<QueryBlogInputModel>, res: Response, next
     
     if(!checkSB(q.sortBy)) q.sortBy = blogFields.createdAt; // Задание исходного значения поля сортировки
     
-    Object.defineProperty(req, 'query', {value: q}); // Возвращение к объекту запроса вместо приобретателя (перезапись поля)
-    
     next(); // Передача управления дальше
 } // Обработка запросов с вопросом на правильные значения
 
-export const queryBlogsMWs = [queryGetBlogsMW, queryGetMiddleware]; // Набор обработчиков запросов с вопросом для сетевых журналов
+export const queryBlogsMWs = [queryGetMiddleware, queryGetBlogsMW]; // Набор обработчиков запросов с вопросом для сетевых журналов
