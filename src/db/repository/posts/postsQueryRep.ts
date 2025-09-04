@@ -10,9 +10,9 @@ import {createSorter} from "../queryCreators/createSorter";
 
 const entKey: KeysDB = "posts";
 
-export const repBD = {
-    async readAll(es: number, ps: number, sb: TypePostFields, sd: TypeSortDir, snf: ProtoFilterType<PostDbType>[]): Promise<[number, PostDbTypeA[]]> {
-        const filter = createFilter<PostDbType>(snf), // Создание поискового фильтра
+export const postsQueryRep = {
+    async readAll(es: number, ps: number, sb: TypePostFields, sd: TypeSortDir, bif: ProtoFilterType<PostDbType>[]): Promise<[number, PostDbTypeA[]]> {
+        const filter = createFilter<PostDbType>(bif), // Создание поискового фильтра
         aggregator = createAggregator<PostDbType>(entKey, filter), // Создание агрегата
         sorter = createSorter(sb, sd); // Создание сортировщика
         
