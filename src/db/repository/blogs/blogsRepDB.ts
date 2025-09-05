@@ -23,4 +23,4 @@ export const blogsRepDB = {
     async edit(entity: BlogDbPutType, id: number) {
         await db.collection<BlogDbType>(entKey).updateOne({id: id}, {$set: entity});
     } // Изменение сетевого журнала в БД
-}; // Работа с базой данных для сетевого журнала
+}; // Работа с базой данных для сетевых журналов

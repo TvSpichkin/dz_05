@@ -1,6 +1,7 @@
 import {BlogInputModel} from "../routes/blogs/types/blogsTypes";
 import {BlogDbType, BlogDbPutType} from "../db/repository/types/blogsDbTypes";
 import {blogsRepDB} from "../db/repository/blogs/blogsRepDB";
+import { postsRepDB } from "../db/repository/posts/postsRepDB";
 
 
 export const blogsServ = {
@@ -22,7 +23,7 @@ export const blogsServ = {
         const isExist = await blogsRepDB.check(id);
         
         if(isExist) {
-            //await repBD.remove("posts", "blogId", +id);
+            await postsRepDB.removes("blogId", id);
             await blogsRepDB.remove(id);
         }
         
