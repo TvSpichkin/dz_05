@@ -4,7 +4,7 @@ import {postsRepDB} from "../db/repository/posts/postsRepDB";
 
 
 export const postsServ = {
-    async create(post: PostInputModel): Promise<PostDbType> {
+    async create(post: PostInputModel): Promise<number> {
         const newPost: PostDbType = {
             id: 0,
             title: post.title,
@@ -14,9 +14,7 @@ export const postsServ = {
             createdAt: new Date().getTime()
         };
         
-        newPost.id = (await postsRepDB.write(newPost));
-        
-        return newPost;
+        return postsRepDB.write(newPost);
     }, // Создание записи
     async del(id: number): Promise<boolean> {
         const isExist = await postsRepDB.check(id);
