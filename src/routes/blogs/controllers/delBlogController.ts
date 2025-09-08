@@ -1,7 +1,7 @@
 import {Response} from "express";
-import {blogsServ} from "../../../domain/blogsServ";
 import {ReqParam} from "../../types/reqTypes";
 import {BlogIdModel} from "../types/blogsTypes";
+import {blogsServ} from "../../../domain/blogsServ";
 
 
 export async function delBlogController(req: ReqParam<BlogIdModel>, res: Response) {
