@@ -10,8 +10,8 @@ import {delBlogController} from "./controllers/delBlogController";
 import {putBlogController} from "./controllers/putBlogController";
 import {queryPostsMWsBID} from "../../middlewares/posts/queryPostsMWs";
 import {getPostsController} from "../posts/controllers/getPostsController";
-// import {postValWithoutBID} from "../posts/middlewares/postValidators";
-// import {createPostController} from "../posts/controllers/createPostController";
+import {postValBID} from "../../middlewares/posts/postValidators";
+import {createPostController} from "../posts/controllers/createPostController";
 
 
 export const blogsRout = express.Router(); // Объявление маршрутизатора сетевых журналов
@@ -23,4 +23,4 @@ blogsRout.delete("/:id", idNaturalVal, adminMiddleware,  delBlogController); // 
 blogsRout.put("/:id", idNaturalVal, ...blogValidators, putBlogController); // Изменение сетевого журнала
 
 blogsRout.get("/:id/posts", ...queryPostsMWsBID, getPostsController); // Возврат записей для указанного сетевого журнала
-// blogsRout.post("/:id/posts", idNaturalVal, ...postValWithoutBID, createPostController); // Создание записи для указанного сетевого журнала
+blogsRout.post("/:id/posts", ...postValBID, createPostController); // Создание записи для указанного сетевого журнала
