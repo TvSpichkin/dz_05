@@ -39,3 +39,16 @@ export const postValidators = [
     
     inputCheckErrorsMiddleware
 ]; // Набор проверок для создания и изменения записей
+
+export const postValBID = [
+    idNaturalVal,
+    adminMiddleware,
+    
+    titleValidator,
+    shortDescriptionValidator,
+    contentValidator,
+    
+    inputCheckErrorsMiddleware,
+    blogIdVal,
+    addBlogId
+]; // Набор проверок для создания и изменения записей без идентификатора текущего сетевого журнала
