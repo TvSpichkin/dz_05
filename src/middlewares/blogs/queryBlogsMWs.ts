@@ -1,9 +1,9 @@
 import {Response, NextFunction} from "express";
-import {SET} from "../../settings";
 import {QueryBlogInputModel} from "../../routes/blogs/types/queryBlogTypes";
+import {chStr, queryGetMiddleware} from "../global/queryGetMiddleware";
 import {blogFields} from "../../routes/blogs/types/blogsTypes";
 import {ReqQuery} from "../../routes/types/reqTypes";
-import {chStr, queryGetMiddleware} from "../global/queryGetMiddleware";
+import {SetLen} from "../settingsLength";
 
 
 function checkSB(sb: QueryBlogInputModel["sortBy"]): boolean {
@@ -15,7 +15,7 @@ function queryGetBlogsMW(req: ReqQuery<QueryBlogInputModel>, res: Response, next
     
     if(typeof q.searchNameTerm === "string") {
         const snt = q.searchNameTerm.trim();
-        if(!snt || snt.length > SET.MaxLen.BLOG.NAME) q.searchNameTerm = undefined; // Задание исходного значения поискового термина
+        if(!snt || snt.length > SetLen.Max.BLOG.NAME) q.searchNameTerm = undefined; // Задание исходного значения поискового термина
     } // Проверка правильности входящего поискового термина для имени
     
     if(!checkSB(q.sortBy)) q.sortBy = blogFields.createdAt; // Задание исходного значения поля сортировки

@@ -1,6 +1,6 @@
 import {Response, NextFunction} from "express";
-import {SET} from "../../settings";
 import {QueryInputModel, SortDirections} from "../../routes/types/queryTypes";
+import {SetLen} from "../settingsLength";
 import {ReqQuery} from "../../routes/types/reqTypes";
 
 
@@ -17,7 +17,7 @@ function checkPN(pn: QueryInputModel["pageNumber"]): boolean {
 } // Проверка правильности входящего номера страницы
 
 function checkPS(ps: QueryInputModel["pageSize"]): boolean {
-    return checkPN(ps) && ps < SET.MaxLen.QUERY.PageSize;
+    return checkPN(ps) && ps < SetLen.Max.QUERY.PageSize;
 } // Проверка правильности входящего размера страницы
 
 export function queryGetMiddleware(req: ReqQuery<QueryInputModel>, res: Response, next: NextFunction) {
