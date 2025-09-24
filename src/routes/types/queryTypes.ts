@@ -3,7 +3,8 @@ export enum SortDirections {
     desc = "desc" // По убыванию
 }; // Направление сортировки
 
-export type TypeSortDir = keyof typeof SortDirections;
+export type TypeSortDir = keyof typeof SortDirections; // Тип направления сортировки
+export type TypeSearchTerm = string | undefined; // Тип поискового термина
 
 export type QueryInputModel = {
     sortDirection: TypeSortDir, // Входящее направление сортировки
