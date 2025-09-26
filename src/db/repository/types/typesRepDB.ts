@@ -1,15 +1,15 @@
 import {BlogDbType} from "./blogsDbTypes";
 import {PostDbType} from "./postsDbTypes";
+import {UserDbType} from "./usersDbTypes";
 
 
 export type DBType = {
     blogs: BlogDbType[], // Массив сетевых журналов
-    posts: PostDbType[] // Массив записей
+    posts: PostDbType[], // Массив записей
+    users: UserDbType[] // Массив пользователей
 }; // Типизация базы данных (что мы будем в ней хранить)
 export type ProtoFilterType<T> = {
-    key: keyof ((string extends keyof T ? T : any) & {id: number}), // Поле сущности в БД !!! Не понимаю, как работает эта ужасная типизация
-    // keyof WithId<T> // keyof EnhancedOmit<T, "_id">
-    // keyof (string extends keyof T ? T : T extends any ? Pick<T, Exclude<keyof T, "_id">> : never)
+    key: keyof ((string extends keyof T ? T : any) & {id: number}), // Поле сущности в БД
     value: boolean | number | string, // Значение этого поля
     way: number // Способ задания условия для фильтра
 }; // Типизация исходных данных для генерации фильтра
