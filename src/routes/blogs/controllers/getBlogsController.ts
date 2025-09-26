@@ -1,5 +1,5 @@
 import {Response} from "express";
-import {ReqQuery} from "../../types/reqTypes";
+import {ReqQuery} from "../../routTypes/reqTypes";
 import {QueryBlogInputModel} from "../types/queryBlogTypes";
 import {Paginator, paginator} from "../../present/paginator";
 import {BlogViewModel, blogFields} from "../types/blogsTypes";

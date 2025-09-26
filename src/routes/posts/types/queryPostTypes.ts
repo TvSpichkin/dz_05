@@ -1,4 +1,4 @@
-import {QueryInputModel} from "../../types/queryTypes";
+import {QueryInputModel} from "../../routTypes/queryTypes";
 import {TypePostFields} from "./postsTypes";
 
 

@@ -1,5 +1,5 @@
 import {Response} from "express";
-import {ReqParamBody} from "../../types/reqTypes";
+import {ReqParamBody} from "../../routTypes/reqTypes";
 import {PostIdModel, PostInputModel} from "../types/postsTypes";
 import {postsServ} from "../../../domain/postsServ";
 

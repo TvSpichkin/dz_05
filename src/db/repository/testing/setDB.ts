@@ -1,7 +1,7 @@
 import {db} from "../../db";
-import {DBType} from "../types/typesRepDB";
-import {BlogDbType} from "../types/blogsDbTypes";
-import {PostDbType} from "../types/postsDbTypes";
+import {DBType} from "../../types/typesRepDB";
+import {BlogDbType} from "../../types/blogsDbTypes";
+import {PostDbType} from "../../types/postsDbTypes";
 
 
 export async function setDB(dataset?: DBType) {

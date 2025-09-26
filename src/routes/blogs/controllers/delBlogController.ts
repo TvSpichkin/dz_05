@@ -1,5 +1,5 @@
 import {Response} from "express";
-import {ReqParam} from "../../types/reqTypes";
+import {ReqParam} from "../../routTypes/reqTypes";
 import {BlogIdModel} from "../types/blogsTypes";
 import {blogsServ} from "../../../domain/blogsServ";
 

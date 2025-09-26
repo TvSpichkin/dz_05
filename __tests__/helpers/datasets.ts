@@ -2,9 +2,9 @@ import {fromUTF8ToBase64} from "../../src/middlewares/global/adminMiddleware";
 import {SET} from "../../src/settings";
 import {BlogInputModel} from "../../src/routes/blogs/types/blogsTypes";
 import {PostInputModel} from "../../src/routes/posts/types/postsTypes";
-import {BlogDbType} from "../../src/db/repository/types/blogsDbTypes";
-import {PostDbType} from "../../src/db/repository/types/postsDbTypes";
-import {DBType} from "../../src/db/repository/types/typesRepDB";
+import {BlogDbType} from "../../src/db/types/blogsDbTypes";
+import {PostDbType} from "../../src/db/types/postsDbTypes";
+import {DBType} from "../../src/db/types/typesRepDB";
 
 
 export const auth = {"Authorization": "Basic " + fromUTF8ToBase64(SET.ADMIN)}; // Получение base64 строки авторизации
@@ -66,7 +66,8 @@ function createPostBD(i: number, b: number): PostDbType {
 export function createDataSet(b: number, p: number = 0): DBType {
     const dataset: DBType = {
         blogs: [], // Массив сетевых журналов
-        posts: [] // Массив записей
+        posts: [], // Массив записей
+        users: [] // Массив пользователей
     }; // Значения заполнения БД
     var i: number;
     

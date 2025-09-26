@@ -1,5 +1,5 @@
 import {Response} from "express";
-import {ReqBody} from "../../types/reqTypes";
+import {ReqBody} from "../../routTypes/reqTypes";
 import {BlogInputModel, BlogViewModel} from "../types/blogsTypes";
 import {blogsServ} from "../../../domain/blogsServ";
 import {blogMaper} from "../../../db/mapers/blogMaper";

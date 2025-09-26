@@ -1,5 +1,5 @@
 import {Sort} from "mongodb";
-import {TypeSortDir} from "../../../routes/types/queryTypes";
+import {TypeSortDir} from "../../routes/routTypes/queryTypes";
 
 
 function dirSort(d: TypeSortDir): 1 | -1 {

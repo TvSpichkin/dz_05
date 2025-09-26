@@ -1,6 +1,6 @@
 import {db} from "../../db";
-import {KeysDB} from "../types/typesRepDB";
-import {BlogDbType, BlogDbPutType} from "../types/blogsDbTypes";
+import {KeysDB} from "../../types/typesRepDB";
+import {BlogDbType, BlogDbPutType} from "../../types/blogsDbTypes";
 
 
 const entKey: KeysDB = "blogs";

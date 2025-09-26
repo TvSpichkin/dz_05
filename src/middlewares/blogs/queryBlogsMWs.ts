@@ -2,7 +2,7 @@ import {Response, NextFunction} from "express";
 import {QueryBlogInputModel} from "../../routes/blogs/types/queryBlogTypes";
 import {chStr, queryGetMiddleware} from "../global/queryGetMiddleware";
 import {blogFields} from "../../routes/blogs/types/blogsTypes";
-import {ReqQuery} from "../../routes/types/reqTypes";
+import {ReqQuery} from "../../routes/routTypes/reqTypes";
 import {SetLen} from "../settingsLength";
 
 

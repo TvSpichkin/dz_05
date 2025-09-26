@@ -1,4 +1,4 @@
-import {BlogDbType} from "../repository/types/blogsDbTypes";
+import {BlogDbType} from "../types/blogsDbTypes";
 import {BlogViewModel} from "../../routes/blogs/types/blogsTypes";
 
 

@@ -1,5 +1,5 @@
 import {Response, NextFunction} from "express";
-import {ReqParamBody} from "../../routes/types/reqTypes";
+import {ReqParamBody} from "../../routes/routTypes/reqTypes";
 import {BlogIdModel} from "../../routes/blogs/types/blogsTypes";
 import {PostInputModel} from "../../routes/posts/types/postsTypes";
 

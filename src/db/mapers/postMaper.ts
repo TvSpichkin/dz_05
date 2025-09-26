@@ -1,4 +1,4 @@
-import {PostDbTypeA} from "../repository/types/postsDbTypes";
+import {PostDbTypeA} from "../types/postsDbTypes";
 import {PostViewModel} from "../../routes/posts/types/postsTypes";
 
 

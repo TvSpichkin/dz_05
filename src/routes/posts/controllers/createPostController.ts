@@ -1,5 +1,5 @@
 import {Response} from "express";
-import {ReqBody} from "../../types/reqTypes";
+import {ReqBody} from "../../routTypes/reqTypes";
 import {PostInputModel, PostViewModel} from "../types/postsTypes";
 import {postsQueryRep} from "../../../db/repository/posts/postsQueryRep";
 import {postsServ} from "../../../domain/postsServ";

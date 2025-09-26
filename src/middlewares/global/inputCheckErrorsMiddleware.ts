@@ -1,6 +1,6 @@
 import {Request, Response, NextFunction} from "express";
 import {validationResult, FieldValidationError} from "express-validator";
-import {APIErrorResult} from "../../routes/types/outputErrorsType";
+import {APIErrorResult} from "../../routes/routTypes/outputErrorsType";
 
 
 export function inputCheckErrorsMiddleware(req: Request, res: Response<APIErrorResult>, next: NextFunction) {
