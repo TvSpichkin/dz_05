@@ -18,3 +18,12 @@ export function createFilter<T>(pf: ProtoFilterType<T>[]): Filter<T> {
     
     return f;
 } // Генерация фильтра
+
+export function joinFilters<T>(pf: ProtoFilterType<T>[], lo: LogicFiltOp): Filter<T> {
+    const f: Filter<T> = {};
+    
+    if(pf.length > 1) f[`$${lo}`] = pf.map(p => ({[p.key]: valueAssigner<T>(p.way, p.value)})) as Filter<WithId<T>>[]; // Заполнение фильтра с объединением
+    else if(pf.length) return createFilter<T>(pf); // Заполнение одиночного фильтра
+    
+    return f;
+} // Объединение фильтров с заданным логическим оператором
