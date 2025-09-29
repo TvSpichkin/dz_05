@@ -16,3 +16,4 @@ export type ProtoFilterType<T> = {
 
 export type KeysDB = keyof DBType; // Ключи БД
 export type keyIds = "id" | "blogId"; // Ключи идентификаторов от сущностей
+export type LogicFiltOp = "and" | "nor" | "or"; // Тип возможных логических операторов для объединения фильтров
