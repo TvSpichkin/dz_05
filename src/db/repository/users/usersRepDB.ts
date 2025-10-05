@@ -9,6 +9,9 @@ export const usersRepDB = {
     async check(id: number): Promise<boolean> {
         return db.collection<UserDbType>(entKey).find({id: id}).hasNext();
     }, // Проверка на существование пользователя в БД
+    async readByLoginOrEmail(loe: string): Promise<UserDbType | null> {
+        return db.collection<UserDbType>(entKey).findOne({$or: [{userName: loe}, {email: loe}]});
+    }, // Извлечение пользователя по имени или почте
     async write(entity: UserDbType): Promise<number> {
         const endId = await db.collection<UserDbType>(entKey).find({}).sort({$natural: -1}).limit(1).toArray();
         
