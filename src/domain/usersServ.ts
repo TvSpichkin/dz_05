@@ -1,10 +1,15 @@
-import {UserInputModel} from "../routes/users/types/usersTypes";
+import {UserInputModel, userFields} from "../routes/users/types/usersTypes";
 import {UserDbType} from "../db/types/usersDbTypes";
+import {ProtoFilterType} from "../db/types/typesRepDB";
 import {usersRepDB} from "../db/repository/users/usersRepDB";
 
 
 export const usersServ = {
     async create(user: UserInputModel): Promise<UserDbType> {
+        const protoFilters: ProtoFilterType<UserDbType>[] = [
+            {key: "userName", value: user.login, way: 0}
+        ];
+        
         const newUser: UserDbType = {
             id: 0,
             userName: user.login,
