@@ -1,14 +1,17 @@
 import {UserInputModel, userFields} from "../routes/users/types/usersTypes";
-import {UserDbType} from "../db/types/usersDbTypes";
+import {UserDbType, userDbFields} from "../db/types/usersDbTypes";
 import {ProtoFilterType} from "../db/types/typesRepDB";
 import {usersRepDB} from "../db/repository/users/usersRepDB";
 
 
 export const usersServ = {
     async create(user: UserInputModel): Promise<UserDbType> {
-        const protoFilters: ProtoFilterType<UserDbType>[] = [
-            {key: "userName", value: user.login, way: 0}
-        ];
+        const findUser = await usersRepDB.readByPF([
+            {key: userDbFields.login, value: user.login, way: 0}, // Проверка уникальности для имени пользователя
+            {key: userDbFields.email, value: user.email, way: 0} // Проверка уникальности для адреса электронной почты
+        ]); // Поиск пользователя по текущей паре значений
+        
+        // if(findUser) return {};
         
         const newUser: UserDbType = {
             id: 0,
