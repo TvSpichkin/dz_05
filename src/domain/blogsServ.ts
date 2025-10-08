@@ -1,4 +1,4 @@
-import {BlogInputModel} from "../routes/blogs/types/blogsTypes";
+import {BlogInputModel} from "../present/routes/blogs/types/blogsTypes";
 import {BlogDbType, BlogDbPutType} from "../db/types/blogsDbTypes";
 import {blogsRepDB} from "../db/repository/blogs/blogsRepDB";
 import {postsRepDB} from "../db/repository/posts/postsRepDB";

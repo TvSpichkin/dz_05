@@ -1,11 +1,11 @@
 import {db} from "../../db";
 import {KeysDB, ProtoFilterType} from "../../types/typesRepDB";
-import {TypePostFields} from "../../../routes/posts/types/postsTypes";
-import {TypeSortDir} from "../../../routes/routTypes/queryTypes";
+import {TypePostFields} from "../../../present/routes/posts/types/postsTypes";
+import {TypeSortDir} from "../../../present/types/queryTypes";
 import {PostDbType, PostDbTypeA} from "../../types/postsDbTypes";
-import {createFilter} from "../../queryTools/methodsFilter";
-import {createAggregator} from "../../queryTools/createAggregator";
-import {createSorter} from "../../queryTools/createSorter";
+import {createFilter} from "../../tools/methodsFilter";
+import {createAggregator} from "../../tools/createAggregator";
+import {createSorter} from "../../tools/createSorter";
 
 
 const entKey: KeysDB = "posts";

@@ -1,11 +1,11 @@
 import {Response} from "express";
-import {ReqQuery} from "../../routTypes/reqTypes";
+import {ReqQuery} from "../../../types/reqTypes";
 import {QueryBlogInputModel} from "../types/queryBlogTypes";
-import {Paginator, paginator} from "../../present/paginator";
+import {Paginator, paginator} from "../../../tools/paginator";
 import {BlogViewModel} from "../types/blogsTypes";
-import {blogDbFields} from "../../../db/types/blogsDbTypes";
-import {blogsQueryRep} from "../../../db/repository/blogs/blogsQueryRep";
-import {blogMaper} from "../../../db/mapers/blogMaper";
+import {blogDbFields} from "../../../../db/types/blogsDbTypes";
+import {blogsQueryRep} from "../../../../db/repository/blogs/blogsQueryRep";
+import {blogMaper} from "../../../../db/mapers/blogMaper";
 
 
 export async function getBlogsController(req: ReqQuery<QueryBlogInputModel>, res: Response<Paginator<BlogViewModel>>) {

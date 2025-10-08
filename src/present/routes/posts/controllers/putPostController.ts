@@ -1,7 +1,7 @@
 import {Response} from "express";
-import {ReqParamBody} from "../../routTypes/reqTypes";
+import {ReqParamBody} from "../../../types/reqTypes";
 import {PostIdModel, PostInputModel} from "../types/postsTypes";
-import {postsServ} from "../../../domain/postsServ";
+import {postsServ} from "../../../../domain/postsServ";
 
 
 export async function putPostController(req: ReqParamBody<PostIdModel, PostInputModel>, res: Response) {

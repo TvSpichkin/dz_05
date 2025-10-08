@@ -1,8 +1,8 @@
 import {Response} from "express";
-import {ReqBody} from "../../routTypes/reqTypes";
+import {ReqBody} from "../../../types/reqTypes";
 import {BlogInputModel, BlogViewModel} from "../types/blogsTypes";
-import {blogsServ} from "../../../domain/blogsServ";
-import {blogMaper} from "../../../db/mapers/blogMaper";
+import {blogsServ} from "../../../../domain/blogsServ";
+import {blogMaper} from "../../../../db/mapers/blogMaper";
 
 
 export async function createBlogController(req: ReqBody<BlogInputModel>, res: Response<BlogViewModel>) {

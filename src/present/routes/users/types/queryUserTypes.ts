@@ -1,4 +1,4 @@
-import {QueryInputModel, TypeSearchTerm} from "../../routTypes/queryTypes";
+import {QueryInputModel, TypeSearchTerm} from "../../../types/queryTypes";
 import {TypeUserFields} from "./usersTypes";
 
 

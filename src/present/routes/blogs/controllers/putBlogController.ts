@@ -1,7 +1,7 @@
 import {Response} from "express";
-import {ReqParamBody} from "../../routTypes/reqTypes";
+import {ReqParamBody} from "../../../types/reqTypes";
 import {BlogIdModel, BlogInputModel} from "../types/blogsTypes";
-import {blogsServ} from "../../../domain/blogsServ";
+import {blogsServ} from "../../../../domain/blogsServ";
 
 
 export async function putBlogController(req: ReqParamBody<BlogIdModel, BlogInputModel>, res: Response) {

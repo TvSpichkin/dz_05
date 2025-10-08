@@ -1,7 +1,7 @@
 import {Response, NextFunction} from "express";
-import {QueryPostInputModel} from "../../routes/posts/types/queryPostTypes";
-import {postFields} from "../../routes/posts/types/postsTypes";
-import {ReqQuery} from "../../routes/routTypes/reqTypes";
+import {QueryPostInputModel} from "../../present/routes/posts/types/queryPostTypes";
+import {postFields} from "../../present/routes/posts/types/postsTypes";
+import {ReqQuery} from "../../present/types/reqTypes";
 import {chStr, queryGetMiddleware} from "../global/queryGetMiddleware";
 import {idNaturalVal} from "../global/idNaturalVal";
 import {blogIdVal} from "../global/blogIdVal";

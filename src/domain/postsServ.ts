@@ -1,4 +1,4 @@
-import {PostInputModel} from "../routes/posts/types/postsTypes";
+import {PostInputModel} from "../present/routes/posts/types/postsTypes";
 import {PostDbType, PostDbPutType} from "../db/types/postsDbTypes";
 import {postsRepDB} from "../db/repository/posts/postsRepDB";
 

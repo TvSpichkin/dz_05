@@ -1,16 +1,16 @@
 import express from "express";
-import {queryBlogsMWs} from "../../middlewares/blogs/queryBlogsMWs";
+import {queryBlogsMWs} from "../../../middlewares/blogs/queryBlogsMWs";
 import {getBlogsController} from "./controllers/getBlogsController";
-import {idNaturalVal} from "../../middlewares/global/idNaturalVal";
+import {idNaturalVal} from "../../../middlewares/global/idNaturalVal";
 import {findBlogController} from "./controllers/findBlogController";
-import {blogValidators} from "../../middlewares/blogs/blogValidators";
+import {blogValidators} from "../../../middlewares/blogs/blogValidators";
 import {createBlogController} from "./controllers/createBlogController";
-import {adminMiddleware} from "../../middlewares/global/adminMiddleware";
+import {adminMiddleware} from "../../../middlewares/global/adminMiddleware";
 import {delBlogController} from "./controllers/delBlogController";
 import {putBlogController} from "./controllers/putBlogController";
-import {queryPostsMWsBID} from "../../middlewares/posts/queryPostsMWs";
+import {queryPostsMWsBID} from "../../../middlewares/posts/queryPostsMWs";
 import {getPostsController} from "../posts/controllers/getPostsController";
-import {postValBID} from "../../middlewares/posts/postValidators";
+import {postValBID} from "../../../middlewares/posts/postValidators";
 import {createPostController} from "../posts/controllers/createPostController";
 
 

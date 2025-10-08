@@ -1,4 +1,4 @@
-import {BlogViewModel} from "../src/routes/blogs/types/blogsTypes";
+import {BlogViewModel} from "../src/present/routes/blogs/types/blogsTypes";
 import {runDB, stopDB} from "../src/db/db";
 import {setDB} from "../src/db/repository/testing/setDB";
 import {req, getBlog, pageData, queryBlog} from "./helpers/test-helpers";

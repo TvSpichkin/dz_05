@@ -1,7 +1,7 @@
 import {Response, NextFunction} from "express";
-import {QueryInputModel, SortDirections} from "../../routes/routTypes/queryTypes";
+import {QueryInputModel, SortDirections} from "../../present/types/queryTypes";
 import {SetLen} from "../settingsLength";
-import {ReqQuery} from "../../routes/routTypes/reqTypes";
+import {ReqQuery} from "../../present/types/reqTypes";
 
 
 export function chStr(str: any): boolean {

@@ -1,8 +1,8 @@
 import {Response} from "express";
-import {ReqParam} from "../../routTypes/reqTypes";
+import {ReqParam} from "../../../types/reqTypes";
 import {BlogIdModel, BlogViewModel} from "../types/blogsTypes";
-import {blogsQueryRep} from "../../../db/repository/blogs/blogsQueryRep";
-import {blogMaper} from "../../../db/mapers/blogMaper";
+import {blogsQueryRep} from "../../../../db/repository/blogs/blogsQueryRep";
+import {blogMaper} from "../../../../db/mapers/blogMaper";
 
 
 export async function findBlogController(req: ReqParam<BlogIdModel>, res: Response<BlogViewModel>) {

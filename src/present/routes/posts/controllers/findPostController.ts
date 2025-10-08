@@ -1,8 +1,8 @@
 import {Response} from "express";
-import {ReqParam} from "../../routTypes/reqTypes";
+import {ReqParam} from "../../../types/reqTypes";
 import {PostIdModel, PostViewModel} from "../types/postsTypes";
-import {postsQueryRep} from "../../../db/repository/posts/postsQueryRep";
-import {postMaper} from "../../../db/mapers/postMaper";
+import {postsQueryRep} from "../../../../db/repository/posts/postsQueryRep";
+import {postMaper} from "../../../../db/mapers/postMaper";
 
 
 export async function findPostController(req: ReqParam<PostIdModel>, res: Response<PostViewModel>) {

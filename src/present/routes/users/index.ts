@@ -1,5 +1,5 @@
 import express from "express";
-import {userValidators} from "../../middlewares/users/userValidators";
+import {userValidators} from "../../../middlewares/users/userValidators";
 
 
 export const usersRout = express.Router(); // Объявление маршрутизатора пользователей

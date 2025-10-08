@@ -1,8 +1,8 @@
-import {UserInputModel, userFields} from "../routes/users/types/usersTypes";
+import {UserInputModel, userFields} from "../present/routes/users/types/usersTypes";
 import {UserDbType, userDbFields} from "../db/types/usersDbTypes";
 import {ProtoFilterType} from "../db/types/typesRepDB";
 import {usersRepDB} from "../db/repository/users/usersRepDB";
-import {DomResObj} from "./domTypes/resObjType";
+import {DomResObj} from "./types/resObjType";
 
 
 export const usersServ = {
@@ -28,7 +28,7 @@ export const usersServ = {
         
         newUser.id = (await usersRepDB.write(newUser));
         
-        return {isSuccess: !0, ent: newUser};
+        return {isSuccess: true, ent: newUser};
     }, // Создание пользователя
     async del(id: number): Promise<boolean> {
         const isExist = await usersRepDB.check(id);

@@ -1,8 +1,8 @@
 import {Response, NextFunction} from "express";
-import {QueryUserInputModel} from "../../routes/users/types/queryUserTypes";
+import {QueryUserInputModel} from "../../present/routes/users/types/queryUserTypes";
 import {chStr, queryGetMiddleware} from "../global/queryGetMiddleware";
-import {userFields} from "../../routes/users/types/usersTypes";
-import {ReqQuery} from "../../routes/routTypes/reqTypes";
+import {userFields} from "../../present/routes/users/types/usersTypes";
+import {ReqQuery} from "../../present/types/reqTypes";
 import {SetLen} from "../settingsLength";
 import {adminMiddleware} from "../global/adminMiddleware";
 

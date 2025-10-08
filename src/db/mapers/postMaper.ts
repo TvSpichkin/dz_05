@@ -1,5 +1,5 @@
 import {PostDbTypeA} from "../types/postsDbTypes";
-import {PostViewModel} from "../../routes/posts/types/postsTypes";
+import {PostViewModel} from "../../present/routes/posts/types/postsTypes";
 
 
 export function postMaper(post: PostDbTypeA): PostViewModel {

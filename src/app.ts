@@ -1,9 +1,9 @@
 import express, {Request, Response} from "express";
 import {SET} from "./settings";
-import {blogsRout} from "./routes/blogs";
-import {postsRout} from "./routes/posts";
-import {testRout} from "./routes/testing";
-import {usersRout} from "./routes/users";
+import {blogsRout} from "./present/routes/blogs";
+import {postsRout} from "./present/routes/posts";
+import {testRout} from "./present/routes/testing";
+import {usersRout} from "./present/routes/users";
 
 export const app = express(); // Определение экспресс приложения
 app.use(express.json()); // Cоздание свойств-объектов тела и вопросов во всех запросах

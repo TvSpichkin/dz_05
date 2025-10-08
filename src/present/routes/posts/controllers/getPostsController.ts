@@ -1,12 +1,12 @@
 import {Response} from "express";
-import {ReqParamQuery} from "../../routTypes/reqTypes";
+import {ReqParamQuery} from "../../../types/reqTypes";
 import {BlogIdModel} from "../../blogs/types/blogsTypes";
 import {QueryPostInputModel} from "../types/queryPostTypes";
-import {Paginator, paginator} from "../../present/paginator";
+import {Paginator, paginator} from "../../../tools/paginator";
 import {PostViewModel} from "../types/postsTypes";
-import {postDbFields} from "../../../db/types/postsDbTypes";
-import {postsQueryRep} from "../../../db/repository/posts/postsQueryRep";
-import {postMaper} from "../../../db/mapers/postMaper";
+import {postDbFields} from "../../../../db/types/postsDbTypes";
+import {postsQueryRep} from "../../../../db/repository/posts/postsQueryRep";
+import {postMaper} from "../../../../db/mapers/postMaper";
 
 
 export async function getPostsController(req: ReqParamQuery<BlogIdModel, QueryPostInputModel>, res: Response<Paginator<PostViewModel>>) {

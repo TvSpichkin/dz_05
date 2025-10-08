@@ -1,7 +1,7 @@
 import {db} from "../../db";
 import {KeysDB, ProtoFilterType} from "../../types/typesRepDB";
 import {UserDbType} from "../../types/usersDbTypes";
-import {joinFilters} from "../../queryTools/methodsFilter";
+import {joinFilters} from "../../tools/methodsFilter";
 
 
 const entKey: KeysDB = "users";

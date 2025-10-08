@@ -1,5 +1,5 @@
 import {DBType} from "../../src/db/types/typesRepDB";
-import {PostViewModel} from "../../src/routes/posts/types/postsTypes";
+import {PostViewModel} from "../../src/present/routes/posts/types/postsTypes";
 import {postMaper} from "../../src/db/mapers/postMaper";
 
 

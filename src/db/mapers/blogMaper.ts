@@ -1,5 +1,5 @@
 import {BlogDbType} from "../types/blogsDbTypes";
-import {BlogViewModel} from "../../routes/blogs/types/blogsTypes";
+import {BlogViewModel} from "../../present/routes/blogs/types/blogsTypes";
 
 
 export function blogMaper(blog: BlogDbType): BlogViewModel {

@@ -1,7 +1,7 @@
 import {agent} from "supertest";
 import {app} from "../../src/app";
 import {SET} from "../../src/settings";
-import {Paginator} from "../../src/routes/present/paginator";
+import {Paginator} from "../../src/present/tools/paginator";
 
 
 export const req = agent(app), // Определение запроса для тестирования программы

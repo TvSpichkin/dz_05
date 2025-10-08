@@ -1,4 +1,4 @@
-import {PostViewModel} from "../src/routes/posts/types/postsTypes";
+import {PostViewModel} from "../src/present/routes/posts/types/postsTypes";
 import {runDB, stopDB} from "../src/db/db";
 import {setDB} from "../src/db/repository/testing/setDB";
 import {req, getPost, pageData, queryPost} from "./helpers/test-helpers";

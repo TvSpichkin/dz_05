@@ -1,5 +1,5 @@
 import {UserDbType} from "../types/usersDbTypes";
-import {UserViewModel} from "../../routes/users/types/usersTypes";
+import {UserViewModel} from "../../present/routes/users/types/usersTypes";
 
 
 export function userMaper(user: UserDbType): UserViewModel {
