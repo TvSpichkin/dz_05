@@ -1,7 +1,8 @@
 import {db} from "../../db";
-import {KeysDB, ProtoFilterType} from "../../types/typesRepDB";
+import {KeysDB} from "../../types/typesRepDB";
 import {TypePostFields} from "../../../present/routes/posts/types/postsTypes";
 import {TypeSortDir} from "../../../present/types/queryTypes";
+import {ProtoFilterType} from "../../../tools/types/typePFilt";
 import {PostDbType, PostDbTypeA} from "../../types/postsDbTypes";
 import {createFilter} from "../../tools/methodsFilter";
 import {createAggregator} from "../../tools/createAggregator";

@@ -3,7 +3,7 @@ import {ReqQuery} from "../../../types/reqTypes";
 import {QueryUserInputModel} from "../types/queryUserTypes";
 import {Paginator, paginator} from "../../../tools/paginator";
 import {UserViewModel} from "../types/usersTypes";
-import {ProtoFilterType} from "../../../../db/types/typesRepDB";
+import {ProtoFilterType} from "../../../../tools/types/typePFilt";
 import {UserDbType, userDbFields} from "../../../../db/types/usersDbTypes";
 import {usersQueryRep} from "../../../../db/repository/users/usersQueryRep";
 import {userMaper} from "../../../../db/mapers/userMaper";

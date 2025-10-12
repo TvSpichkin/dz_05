@@ -1,6 +1,5 @@
 import {UserInputModel, userFields} from "../present/routes/users/types/usersTypes";
 import {UserDbType, userDbFields} from "../db/types/usersDbTypes";
-import {ProtoFilterType} from "../db/types/typesRepDB";
 import {usersRepDB} from "../db/repository/users/usersRepDB";
 import {DomResObj} from "./types/resObjType";
 

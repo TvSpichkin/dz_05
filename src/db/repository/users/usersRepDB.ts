@@ -1,6 +1,7 @@
 import {db} from "../../db";
-import {KeysDB, ProtoFilterType} from "../../types/typesRepDB";
+import {KeysDB} from "../../types/typesRepDB";
 import {UserDbType} from "../../types/usersDbTypes";
+import {ProtoFilterType} from "../../../tools/types/typePFilt";
 import {joinFilters} from "../../tools/methodsFilter";
 
 

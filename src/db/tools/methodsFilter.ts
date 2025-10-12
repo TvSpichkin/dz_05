@@ -1,5 +1,6 @@
 import {Filter, WithId} from "mongodb";
-import {ProtoFilterType, LogicFiltOp} from "../types/typesRepDB";
+import {ProtoFilterType} from "../../tools/types/typePFilt";
+import {LogicFiltOp} from "../types/typesRepDB";
 
 
 function valueAssigner<T>(w: ProtoFilterType<T>["way"], v: ProtoFilterType<T>["value"]) {

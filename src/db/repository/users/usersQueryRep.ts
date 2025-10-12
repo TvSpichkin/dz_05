@@ -1,7 +1,8 @@
 import {db} from "../../db";
-import {KeysDB, ProtoFilterType} from "../../types/typesRepDB";
+import {KeysDB} from "../../types/typesRepDB";
 import {TypeUserFields} from "../../../present/routes/users/types/usersTypes";
 import {TypeSortDir} from "../../../present/types/queryTypes";
+import {ProtoFilterType} from "../../../tools/types/typePFilt";
 import {UserDbType} from "../../types/usersDbTypes";
 import {joinFilters} from "../../tools/methodsFilter";
 import {createSorter} from "../../tools/createSorter";
