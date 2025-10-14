@@ -5,6 +5,7 @@ import {Paginator, paginator} from "../../../tools/paginator";
 import {UserViewModel} from "../types/usersTypes";
 import {ProtoFilterType} from "../../../../tools/types/typePFilt";
 import {UserDbType, userDbFields} from "../../../../db/types/usersDbTypes";
+import {getPFilt} from "../../../../tools/methodPFilt";
 import {usersQueryRep} from "../../../../db/repository/users/usersQueryRep";
 import {userMaper} from "../../../../db/mapers/userMaper";
 
@@ -15,8 +16,8 @@ export async function getUsersController(req: ReqQuery<QueryUserInputModel>, res
     sortBy = q.sortBy, // Задание исходного значения поля сортировки
     searchTermFilt: ProtoFilterType<UserDbType>[] = []; // Данные поискового термина для генерации фильтра
     
-    if(q.searchLoginTerm) searchTermFilt.push({key: userDbFields.login, value: q.searchLoginTerm, way: 1}); // Добавление поискового запроса для имени пользователя
-    if(q.searchEmailTerm) searchTermFilt.push({key: userDbFields.email, value: q.searchEmailTerm, way: 1}); // Добавление поискового запроса для адреса электронной почты
+    if(q.searchLoginTerm) searchTermFilt.push(getPFilt(userDbFields.login, q.searchLoginTerm, 1)); // Добавление поискового запроса для имени пользователя
+    if(q.searchEmailTerm) searchTermFilt.push(getPFilt(userDbFields.email, q.searchEmailTerm, 1)); // Добавление поискового запроса для адреса электронной почты
     
     const [totalCount, users] = await usersQueryRep.readAll(elemsSkip, q.pageSize, sortBy, q.sortDirection, searchTermFilt); // Получение пользователей и их количества
     

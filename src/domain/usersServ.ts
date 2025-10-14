@@ -2,14 +2,15 @@ import {UserInputModel, userFields} from "../present/routes/users/types/usersTyp
 import {UserDbType, userDbFields} from "../db/types/usersDbTypes";
 import {usersRepDB} from "../db/repository/users/usersRepDB";
 import {DomResObj} from "./types/resObjType";
+import {getSomePFilt} from "../tools/methodPFilt";
 
 
 export const usersServ = {
     async create(user: UserInputModel): Promise<DomResObj<UserDbType>> {
-        const findUser = await usersRepDB.readByPF([
-            {key: userDbFields.login, value: user.login, way: 0}, // Проверка уникальности для имени пользователя
-            {key: userDbFields.email, value: user.email, way: 0} // Проверка уникальности для адреса электронной почты
-        ]); // Поиск пользователя по текущей паре значений
+        const findUser = await usersRepDB.readByPF(getSomePFilt(
+            [userDbFields.login, user.login], // Проверка уникальности для имени пользователя
+            [userDbFields.email, user.email] // Проверка уникальности для адреса электронной почты
+        )); // Поиск пользователя по текущей паре значений
         
         if(findUser) return {
             isSuccess: false,
