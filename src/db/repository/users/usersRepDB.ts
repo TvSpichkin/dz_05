@@ -1,28 +1,25 @@
-import {db} from "../../db";
-import {KeysDB} from "../../types/typesRepDB";
+import {usersColl} from "../../db";
 import {UserDbType} from "../../types/usersDbTypes";
 import {ProtoFilterType} from "../../../tools/types/typePFilt";
 import {joinFilters} from "../../tools/methodsFilter";
 
 
-const entKey: KeysDB = "users";
-
 export const usersRepDB = {
     async check(id: number): Promise<boolean> {
-        return db.collection<UserDbType>(entKey).find({id: id}).hasNext();
+        return usersColl.find({id: id}).hasNext();
     }, // Проверка на существование пользователя в БД
     async readByPF(pf: ProtoFilterType<UserDbType>[]): Promise<UserDbType | null> {
-        return db.collection<UserDbType>(entKey).findOne(joinFilters<UserDbType>(pf, "or"));
+        return usersColl.findOne(joinFilters<UserDbType>(pf, "or"));
     }, // Извлечение пользователя по имени или почте
     async write(entity: UserDbType): Promise<number> {
-        const endId = await db.collection<UserDbType>(entKey).find({}).sort({$natural: -1}).limit(1).toArray();
+        const endId = await usersColl.find({}).sort({$natural: -1}).limit(1).toArray(); // Последний идентификатор пользователя
         
-        entity.id = endId.length ? endId[0].id + 1 : 1;
-        await db.collection<UserDbType>(entKey).insertOne(entity);
+        entity.id = endId.length ? endId[0].id + 1 : 1; // Создание идентификатора для текущего пользователя
+        await usersColl.insertOne(entity);
         
         return entity.id;
     }, // Запись пользователя в БД
     async remove(id: number) {
-        await db.collection<UserDbType>(entKey).deleteOne({id: id});
+        await usersColl.deleteOne({id: id});
     } // Удаление пользователя из БД
 }; // Работа с базой данных для пользователей
