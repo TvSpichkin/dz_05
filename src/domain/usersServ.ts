@@ -3,6 +3,7 @@ import {UserDbType, userDbFields} from "../db/types/usersDbTypes";
 import {usersRepDB} from "../db/repository/users/usersRepDB";
 import {DomResObj} from "./types/resObjType";
 import {getSomePFilt} from "../tools/methodPFilt";
+import bcrypt from "bcrypt";
 
 
 export const usersServ = {
@@ -17,12 +18,14 @@ export const usersServ = {
             errField: user.email == findUser.email ? userFields.email : userFields.login
         }; // Возврат ошибки и неуникального поля в случае совпадения
         
-        const newUser: UserDbType = {
+        const saltPW = await bcrypt.genSalt(10), // Генерация соли для контрольной суммы пароля
+        hashPW = await bcrypt.hash(user.password, saltPW), // Генерация контрольной суммы пароля
+        newUser: UserDbType = {
             id: 0,
             userName: user.login,
             email: user.email,
-            passwordHash: "",
-            passwordSalt: "",
+            passwordHash: hashPW,
+            passwordSalt: saltPW,
             createdAt: new Date().getTime()
         };
         
