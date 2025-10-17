@@ -11,10 +11,10 @@ const loginValidator = body("login").isString().withMessage("Вход не яв�
     passwordValidator = body("password").isString().withMessage("Пароль не является строкой")
         .trim().isLength({min: SetLen.Min.USER.PASSWORD, max: SetLen.Max.USER.PASSWORD})
         .withMessage("Пароль содержит больше " + SetLen.Max.USER.PASSWORD + " символов или является пустым"), // Проверка правильности входящего пароля
-    emailValidator = body("email").isString().withMessage("Электронная почта не является строкой")
+    emailValidator = body("email").isString().withMessage("Адрес электронной почты не является строкой")
         .trim().isLength({min: SetLen.Min.USER.EMAIL, max: SetLen.Max.USER.EMAIL})
-        .withMessage("Электронная почта содержит больше " + SetLen.Max.USER.EMAIL + " символов или является пустой")
-        .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/).withMessage("Строка не является электронной почтой"); // Проверка правильности входящей электронной почты
+        .withMessage("Адрес электронной почты содержит больше " + SetLen.Max.USER.EMAIL + " символов или является пустым")
+        .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/).withMessage("Строка не является адресом электронной почты"); // Проверка правильности входящей электронной почты
 
 export const userValidators = [
     adminMiddleware,
