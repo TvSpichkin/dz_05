@@ -1,7 +1,9 @@
 import express from "express";
-import {userValidators} from "../../../middlewares/users/userValidators";
+import {queryUsersMWs} from "../../../middlewares/users/queryUsersMWs";
+import {getUsersController} from "./controllers/getUsersController";
 
 
 export const usersRout = express.Router(); // Объявление маршрутизатора пользователей
 
-//usersRout.post("/", ...userValidators, createUserController); // Создание записи
+usersRout.get("/", ...queryUsersMWs, getUsersController); // Возврат всех пользователей
+//usersRout.post("/", ...userValidators, createUserController); // Создание пользователя
