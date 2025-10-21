@@ -19,7 +19,7 @@ export const usersRepDB = {
         
         return entity.id;
     }, // Запись пользователя в БД
-    async remove(id: number) {
-        await usersColl.deleteOne({id: id});
+    async remove(id: number): Promise<boolean> {
+        return !!(await usersColl.deleteOne({id: id})).deletedCount;
     } // Удаление пользователя из БД
 }; // Работа с базой данных для пользователей

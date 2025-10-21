@@ -34,10 +34,6 @@ export const usersServ = {
         return {isSuccess: true, ent: newUser};
     }, // Создание пользователя
     async del(id: number): Promise<boolean> {
-        const isExist = await usersRepDB.check(id);
-        
-        if(isExist) await usersRepDB.remove(id);
-        
-        return isExist;
+        return usersRepDB.remove(id);
     } // Удаление пользователя
 }; // Изменение пользователей
