@@ -17,11 +17,7 @@ export const postsServ = {
         return postsRepDB.write(newPost);
     }, // Создание записи
     async del(id: number): Promise<boolean> {
-        const isExist = await postsRepDB.check(id);
-        
-        if(isExist) await postsRepDB.remove(id);
-        
-        return isExist;
+        return postsRepDB.remove(id);
     }, // Удаление записи
     async put(post: PostInputModel, id: number): Promise<boolean> {
         const isExist = await postsRepDB.check(id),

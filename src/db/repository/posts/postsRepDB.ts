@@ -15,8 +15,8 @@ export const postsRepDB = {
         
         return entity.id;
     }, // Запись записи в БД
-    async remove(id: number) {
-        await postsColl.deleteOne({id: id});
+    async remove(id: number): Promise<boolean> {
+        return !!(await postsColl.deleteOne({id: id})).deletedCount;
     }, // Удаление записи из БД
     async removes(keyId: keyIds, id: number) {
         await postsColl.deleteMany({[keyId]: id});
