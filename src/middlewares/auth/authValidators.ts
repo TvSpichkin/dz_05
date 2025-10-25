@@ -12,3 +12,10 @@ async function loginOrEmailValidator(req: ReqBody<LoginInputModel>, res: Respons
     
     next(); // Передача управления дальше
 } // Проверка правильности входа или входящей электронной почты
+
+export const authValidators = [
+    loginOrEmailValidator,
+    passwordValidator,
+    
+    inputCheckErrorsMiddleware
+]; // Набор проверок для проверки подлинности пользователя
