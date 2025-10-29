@@ -3,8 +3,7 @@ import {DomResObj} from "./types/resObjType";
 import {UserDbType, userDbFields} from "../db/types/usersDbTypes";
 import {usersRepDB} from "../db/repository/users/usersRepDB";
 import {getSomePFilt} from "../tools/methodPFilt";
-import {genSalt} from "./tools/methodsCrypt";
-import bcrypt from "bcrypt";
+import {genSalt, genHash} from "./tools/methodsCrypt";
 import {LoginInputModel} from "../present/routes/auth/types/authTypes";
 
 
@@ -21,7 +20,7 @@ export const usersServ = {
         }; // Возврат ошибки и неуникального поля в случае совпадения
         
         const saltPW = await genSalt(10), // Генерация соли для контрольной суммы пароля
-        hashPW = await bcrypt.hash(user.password, saltPW), // Генерация контрольной суммы пароля
+        hashPW = await genHash(user.password, saltPW), // Генерация контрольной суммы пароля
         newUser: UserDbType = {
             id: 0,
             userName: user.login,
@@ -44,7 +43,7 @@ export const usersServ = {
         ])); // Поиск по имени пользователя или адресу электронной почты
         
         if(!findUser) return false;
-        const hashPW = await bcrypt.hash(auth.password, findUser.passwordSalt); // Генерация контрольной суммы пароля
+        const hashPW = await genHash(auth.password, findUser.passwordSalt); // Генерация контрольной суммы пароля
         
         return hashPW == findUser.passwordHash;
     } // Проверка учетных данных пользователя
