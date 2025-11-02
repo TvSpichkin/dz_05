@@ -6,7 +6,8 @@ import {Paginator} from "../../src/present/tools/paginator";
 
 export const req = agent(app), // Определение запроса для тестирования программы
     getBlog = req.get(SET.PATH.BLOGS), // Запрос на получение всех сетевых журналов
-    getPost = req.get(SET.PATH.POSTS); // Запрос на получение всех записей
+    getPost = req.get(SET.PATH.POSTS), // Запрос на получение всех записей
+    getUser = req.get(SET.PATH.USERS); // Запрос на получение всех пользователей
 
 export function queryBlog(q: string = ""): typeof getBlog {
     return req.get(SET.PATH.BLOGS + "?" + q);
