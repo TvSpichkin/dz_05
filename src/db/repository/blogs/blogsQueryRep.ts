@@ -9,7 +9,7 @@ import {blogsColl} from "../../db";
 
 export const blogsQueryRep = {
     async readAll(es: number, ps: number, sb: TypeBlogFields, sd: TypeSortDir, snf: ProtoFilterType<BlogDbType>[]): Promise<[number, BlogDbType[]]> {
-        const filter = createFilter<BlogDbType>(snf), // Создание поискового фильтра
+        const filter = createFilter(snf), // Создание поискового фильтра
         sorter = createSorter(sb, sd); // Создание сортировщика
         
         return Promise.all([blogsColl.count(filter), // Извлечение количества элементов удовлетворяющих поисковому фильтру

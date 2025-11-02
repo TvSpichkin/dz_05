@@ -9,7 +9,7 @@ import {usersColl} from "../../db";
 
 export const usersQueryRep = {
     async readAll(es: number, ps: number, sb: TypeUserFields, sd: TypeSortDir, stf: ProtoFilterType<UserDbType>[]): Promise<[number, UserDbType[]]> {
-        const filter = joinFilters<UserDbType>(stf, "or"), // Создание поискового фильтра
+        const filter = joinFilters(stf, "or"), // Создание поискового фильтра
         sorter = createSorter(sb, sd); // Создание сортировщика
         
         return Promise.all([usersColl.count(filter), // Извлечение количества элементов удовлетворяющих поисковому фильтру

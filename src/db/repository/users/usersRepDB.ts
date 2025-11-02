@@ -9,7 +9,7 @@ export const usersRepDB = {
         return usersColl.find({id: id}).hasNext();
     }, // Проверка на существование пользователя в БД
     async readByPF(pf: ProtoFilterType<UserDbType>[]): Promise<UserDbType | null> {
-        return usersColl.findOne(joinFilters<UserDbType>(pf, "or"));
+        return usersColl.findOne(joinFilters(pf, "or"));
     }, // Извлечение пользователя по имени или почте
     async write(entity: UserDbType): Promise<number> {
         const endId = await usersColl.find({}).sort({$natural: -1}).limit(1).toArray(); // Последний идентификатор пользователя
