@@ -12,4 +12,4 @@ export const usersRout = express.Router(); // Объявление маршру�
 
 usersRout.get("/", ...queryUsersMWs, getUsersController); // Возврат всех пользователей
 usersRout.post("/", ...userValidators, createUserController); // Создание пользователя
-usersRout.delete("/:id", idNaturalVal, adminMiddleware,  delUserController); // Удаление пользователя
+usersRout.delete("/:id", idNaturalVal, adminMiddleware, delUserController); // Удаление пользователя
