@@ -19,7 +19,7 @@ export const usersServ = {
             errField: user.email == findUser.email ? userFields.email : userFields.login
         }; // Возврат ошибки и неуникального поля в случае совпадения
         
-        const saltPW = await genSalt(10), // Генерация соли для контрольной суммы пароля
+        const saltPW = await genSalt(), // Генерация соли для контрольной суммы пароля
         hashPW = await genHash(user.password, saltPW), // Генерация контрольной суммы пароля
         newUser: UserDbType = {
             id: 0,
