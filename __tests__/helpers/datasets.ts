@@ -45,10 +45,21 @@ function createUser(l: string, p: string, e: string): UserInputModel {
     };
 } // Создание входного пользователя
 
+function getPosChar(i: number, e: number): number {
+    if(!e) return 33 + (i < 94 ? i : i + 33);
+    
+    i %= 64;
+    if(!i) return 45;
+    if(i < 11) return 47 + i;
+    if(i < 37) return 54 + i;
+    if(i < 38) return 95;
+    return 59 + i;
+} // Получение позиции символа
+
 export function bigStr(n: number, e = 0): string {
     var t = "";
     
-    for(let i = 0; i < n; i++) t += String.fromCharCode(33 + (i < 94 ? i : i + 33));
+    for(let i = 0; i < n; i++) t += String.fromCharCode(getPosChar(i, e));
     
     return t;
 } // Создание строки с длиной n из символов юникода
