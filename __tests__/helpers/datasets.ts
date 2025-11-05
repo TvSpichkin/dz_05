@@ -2,6 +2,7 @@ import {fromUTF8ToBase64} from "../../src/middlewares/global/adminMiddleware";
 import {SET} from "../../src/settings";
 import {BlogInputModel} from "../../src/present/routes/blogs/types/blogsTypes";
 import {PostInputModel} from "../../src/present/routes/posts/types/postsTypes";
+import {UserInputModel} from "../../src/present/routes/users/types/usersTypes";
 import {BlogDbType} from "../../src/db/types/blogsDbTypes";
 import {PostDbType} from "../../src/db/types/postsDbTypes";
 import {DBType} from "../../src/db/types/typesRepDB";
@@ -14,7 +15,10 @@ export const corrBlog1 = createBlog("Василий", "Тёркин", "https://_
     corrBlog3 = createBlog(bigStr(15), bigStr(500), "https://te.st"), // Правильные входные сетевые журналы
     corrPost1 = createPost("Название 1 записи", "Краткое описание 1 записи", "Содержание 1 записи", "1"),
     corrPost2 = createPost("Название 2 записи", "Краткое описание 2 записи", "Содержание 2 записи", "1"),
-    corrPost3 = createPost(bigStr(30), bigStr(100), bigStr(1000), "2"); // Правильные входные записи
+    corrPost3 = createPost(bigStr(30), bigStr(100), bigStr(1000), "2"), // Правильные входные записи
+    corrUser1 = createUser("Mihal", "Palych_Terentyev", "kapital@projit.min"),
+    corrUser2 = createUser("Abc", bigStr(6), "d@e.fg"),
+    corrUser3 = createUser("Hijklmnopq", bigStr(20), "r@s.tu"); // Правильные входные пользователи
 
 function createBlog(n: string, d: string, w: string): BlogInputModel {
     return {
@@ -33,8 +37,16 @@ function createPost(t: string, s: string, c: string, b: string): PostInputModel 
     };
 } // Создание входной записи
 
-export function bigStr(n: number): string {
-    var t: string = "";
+function createUser(l: string, p: string, e: string): UserInputModel {
+    return {
+        login: l, // Вход; максимальная длина: 10, минимальная длина: 3, шаблон: ^[a-zA-Z0-9_-]*$, должен быть уникальным
+        password: p, // Пароль; максимальная длина: 20, минимальная длина: 6
+        email: e // Почта; шаблон: ^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$, должна быть уникальной
+    };
+} // Создание входного пользователя
+
+export function bigStr(n: number, e = 0): string {
+    var t = "";
     
     for(let i = 0; i < n; i++) t += String.fromCharCode(33 + (i < 94 ? i : i + 33));
     
