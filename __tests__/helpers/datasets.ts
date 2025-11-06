@@ -13,12 +13,12 @@ export const auth = {"Authorization": "Basic " + fromUTF8ToBase64(SET.ADMIN)}; /
 export const corrBlog1 = createBlog("Василий", "Тёркин", "https://_vas-i1.t_9r/k_/-i/4/"),
     corrBlog2 = createBlog("Максим", "Так так так", "https://maksima.dva/teski"),
     corrBlog3 = createBlog(bigStr(15), bigStr(500), "https://te.st"), // Правильные входные сетевые журналы
-    corrPost1 = createPost("Название 1 записи", "Краткое описание 1 записи", "Содержание 1 записи", "1"),
-    corrPost2 = createPost("Название 2 записи", "Краткое описание 2 записи", "Содержание 2 записи", "1"),
-    corrPost3 = createPost(bigStr(30), bigStr(100), bigStr(1000), "2"), // Правильные входные записи
-    corrUser1 = createUser("Mihal", "Palych_Terentyev", "kapital@projit.min"),
-    corrUser2 = createUser("Abc", bigStr(6), "d@e.fg"),
-    corrUser3 = createUser("Hijklmnopq", bigStr(20), "r@s.tu"); // Правильные входные пользователи
+    corrPost1 = createPost("Название 1 записи", "Краткое описание 1 записи", "Содержание 1 записи", '1'),
+    corrPost2 = createPost("Название 2 записи", "Краткое описание 2 записи", "Содержание 2 записи", '1'),
+    corrPost3 = createPost(bigStr(30), bigStr(100), bigStr(1000), '2'), // Правильные входные записи
+    corrUser1 = createUser("Mihal", "Палыч Тереньтьев", "kapital@projit.min"),
+    corrUser2 = createUser("Abc", bigStr(6), "d@e.fg"), // Правильные входные пользователи
+    corrUser3 = createUser("Hijklmnopq", bigStr(20), bigStr(124, 1) + '@' + bigStr(124, 1) + ".rstu");
 
 function createBlog(n: string, d: string, w: string): BlogInputModel {
     return {
@@ -46,9 +46,9 @@ function createUser(l: string, p: string, e: string): UserInputModel {
 } // Создание входного пользователя
 
 function getPosChar(i: number, e: number): number {
-    if(!e) return 33 + (i < 94 ? i : i + 33);
+    if(!e) return 33 + (i < 94 ? i : i + 33); // Возвращение позиции из символов юникода
     
-    i %= 64;
+    i %= 64; // Возвращение позиции для шаблона: ^[\w-]*$
     if(!i) return 45;
     if(i < 11) return 47 + i;
     if(i < 37) return 54 + i;
