@@ -3,6 +3,7 @@ import {runDB, stopDB} from "../src/db/db";
 import {setDB} from "../src/db/repository/testing/setDB";
 import {req, getUser, pageData} from "./helpers/test-helpers";
 import {SET} from "../src/settings";
+import {corrUser1} from "./helpers/datasets";
 
 
 describe("/users", () => {
@@ -24,6 +25,14 @@ describe("/users", () => {
     });
     
     it("должен вернуть 200 и пустой массив", async () => {
+        await getUser.expect(200, pageData());
+    });
+    
+    it("не должен создать пользователя без авторизации и должен вернуть 401", async () => {
+        await req.post(SET.PATH.USERS).send(corrUser1).expect(401);
+        await req.post(SET.PATH.USERS).set({"Auth": "Basic cisaB"}).send(corrUser1).expect(401);
+        await req.post(SET.PATH.USERS).set({"Authorization": "Vazic cisaB"}).send(corrUser1).expect(401);
+        await req.post(SET.PATH.USERS).set({"Authorization": "Basic cisaB"}).send(corrUser1).expect(401);
         await getUser.expect(200, pageData());
     });
 });
