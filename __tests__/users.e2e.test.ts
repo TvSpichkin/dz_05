@@ -3,7 +3,7 @@ import {runDB, stopDB} from "../src/db/db";
 import {setDB} from "../src/db/repository/testing/setDB";
 import {req, getUser, pageData} from "./helpers/test-helpers";
 import {SET} from "../src/settings";
-import {corrUser1} from "./helpers/datasets";
+import {auth, bigStr, corrUser1} from "./helpers/datasets";
 
 
 describe("/users", () => {
@@ -33,6 +33,19 @@ describe("/users", () => {
         await req.post(SET.PATH.USERS).set({"Auth": "Basic cisaB"}).send(corrUser1).expect(401);
         await req.post(SET.PATH.USERS).set({"Authorization": "Vazic cisaB"}).send(corrUser1).expect(401);
         await req.post(SET.PATH.USERS).set({"Authorization": "Basic cisaB"}).send(corrUser1).expect(401);
+        await getUser.expect(200, pageData());
+    });
+    
+    it("не должен создать пользователя c неправильными входными данными", async () => {
+        const user = corrUser1;
+        
+        await req.post(SET.PATH.USERS).set(auth).expect(400);
+        await getUser.expect(200, pageData());
+        
+        await req.post(SET.PATH.USERS).set(auth).send().expect(400);
+        await getUser.expect(200, pageData());
+        
+        await req.post(SET.PATH.USERS).set(auth).send({название: 0}).expect(400);
         await getUser.expect(200, pageData());
     });
 });
