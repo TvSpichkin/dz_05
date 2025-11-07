@@ -62,5 +62,19 @@ describe("/users", () => {
         await req.post(SET.PATH.USERS).set(auth).send({...user, password: bigStr(5)}).expect(400);
         await req.post(SET.PATH.USERS).set(auth).send({...user, password: "        "}).expect(400);
         await getUser.expect(200, pageData());
+        
+        await req.post(SET.PATH.USERS).set(auth).send({...user, email: undefined}).expect(400);
+        await req.post(SET.PATH.USERS).set(auth).send({...user, email: 0}).expect(400);
+        await req.post(SET.PATH.USERS).set(auth).send({...user, email: bigStr(7)}).expect(400);
+        await req.post(SET.PATH.USERS).set(auth).send({...user, login: bigStr(7, 1)}).expect(400);
+        await req.post(SET.PATH.USERS).set(auth).send({...user, email: "        "}).expect(400); 
+        await req.post(SET.PATH.USERS).set(auth).send({...user, email: "ё@e.fg"}).expect(400);
+        await req.post(SET.PATH.USERS).set(auth).send({...user, email: "d@ё.fg"}).expect(400);
+        await req.post(SET.PATH.USERS).set(auth).send({...user, email: "d@e.ёg"}).expect(400);
+        await req.post(SET.PATH.USERS).set(auth).send({...user, email: "d@e.f"}).expect(400);
+        await req.post(SET.PATH.USERS).set(auth).send({...user, email: "d@e.fghij"}).expect(400);
+        await req.post(SET.PATH.USERS).set(auth).send({...user, email: "de.fg"}).expect(400);
+        await req.post(SET.PATH.USERS).set(auth).send({...user, email: "d@efg"}).expect(400);
+        await getUser.expect(200, pageData());
     });
 });
