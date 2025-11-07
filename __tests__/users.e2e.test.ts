@@ -47,5 +47,13 @@ describe("/users", () => {
         
         await req.post(SET.PATH.USERS).set(auth).send({название: 0}).expect(400);
         await getUser.expect(200, pageData());
+        
+        await req.post(SET.PATH.USERS).set(auth).send({...user, login: undefined}).expect(400);
+        await req.post(SET.PATH.USERS).set(auth).send({...user, login: 0}).expect(400);
+        await req.post(SET.PATH.USERS).set(auth).send({...user, login: bigStr(7)}).expect(400);
+        await req.post(SET.PATH.USERS).set(auth).send({...user, login: bigStr(11, 1)}).expect(400);
+        await req.post(SET.PATH.USERS).set(auth).send({...user, login: bigStr(2, 1)}).expect(400);
+        await req.post(SET.PATH.USERS).set(auth).send({...user, login: "    "}).expect(400);
+        await getUser.expect(200, pageData());
     });
 });
