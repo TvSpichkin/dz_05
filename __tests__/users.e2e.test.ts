@@ -55,5 +55,12 @@ describe("/users", () => {
         await req.post(SET.PATH.USERS).set(auth).send({...user, login: bigStr(2, 1)}).expect(400);
         await req.post(SET.PATH.USERS).set(auth).send({...user, login: "    "}).expect(400);
         await getUser.expect(200, pageData());
+        
+        await req.post(SET.PATH.USERS).set(auth).send({...user, password: undefined}).expect(400);
+        await req.post(SET.PATH.USERS).set(auth).send({...user, password: 0}).expect(400);
+        await req.post(SET.PATH.USERS).set(auth).send({...user, password: bigStr(21)}).expect(400);
+        await req.post(SET.PATH.USERS).set(auth).send({...user, password: bigStr(5)}).expect(400);
+        await req.post(SET.PATH.USERS).set(auth).send({...user, password: "        "}).expect(400);
+        await getUser.expect(200, pageData());
     });
 });
