@@ -1,7 +1,7 @@
 import {Response} from "express";
 import {ReqBody} from "../../../types/reqTypes";
 import {userFields, UserInputModel, UserViewModel} from "../types/usersTypes";
-import {APIErrorResult, FieldError} from "../../../types/outputErrorsType";
+import {APIErrorResult} from "../../../types/outputErrorsType";
 import {usersServ} from "../../../../domain/usersServ";
 import {userMaper} from "../../../../db/mapers/userMaper";
 
