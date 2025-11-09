@@ -99,4 +99,12 @@ describe("/users", () => {
         
         await getUser.expect(200, pageData([user1, user2, user3]));
     });
+    
+    it("не должен удалить пользователя без авторизации и должен вернуть 401", async () => {
+        await req.delete(SET.PATH.USERS + "/1").expect(401);
+        await req.delete(SET.PATH.USERS + "/1").set({"Auth": "Basic cisaB"}).expect(401);
+        await req.delete(SET.PATH.USERS + "/1").set({"Authorization": "Vazic cisaB"}).expect(401);
+        await req.delete(SET.PATH.USERS + "/1").set({"Authorization": "Basic cisaB"}).expect(401);
+        await getUser.expect(200, pageData([user1, user2, user3]));
+    });
 });
