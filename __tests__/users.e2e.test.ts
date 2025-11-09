@@ -7,7 +7,7 @@ import {auth, bigStr, corrUser1, corrUser2, corrUser3} from "./helpers/datasets"
 
 
 describe("/users", () => {
-    var user1: UserViewModel, user2: UserViewModel;
+    var user1: UserViewModel, user2: UserViewModel, user3: UserViewModel;
     
     beforeAll(async () => {
         await runDB(); // Подключение к БД
@@ -76,5 +76,27 @@ describe("/users", () => {
         await req.post(SET.PATH.USERS).set(auth).send({...user, email: "de.fg"}).expect(400);
         await req.post(SET.PATH.USERS).set(auth).send({...user, email: "d@efg"}).expect(400);
         await getUser.expect(200, pageData());
+    });
+    
+    it("должен создать пользователя c правильными входными данными", async () => {
+        user1 = (await req.post(SET.PATH.USERS).set(auth).send(corrUser1).expect(201)).body;
+        expect(user1.id).toBe("1");
+        expect(user1.login).toBe(corrUser1.login);
+        expect(user1.email).toBe(corrUser1.email);
+        expect(new Date(user1.createdAt).getTime()).not.toBeNaN();
+        
+        user2 = (await req.post(SET.PATH.USERS).set(auth).send(corrUser2).expect(201)).body;
+        expect(user2.id).toBe("1");
+        expect(user2.login).toBe(corrUser2.login);
+        expect(user2.email).toBe(corrUser2.email);
+        expect(new Date(user2.createdAt).getTime()).not.toBeNaN();
+        
+        user3 = (await req.post(SET.PATH.USERS).set(auth).send(corrUser3).expect(201)).body;
+        expect(user3.id).toBe("1");
+        expect(user3.login).toBe(corrUser3.login);
+        expect(user3.email).toBe(corrUser3.email);
+        expect(new Date(user3.createdAt).getTime()).not.toBeNaN();
+        
+        await getUser.expect(200, pageData([user1, user2, user3]));
     });
 });
