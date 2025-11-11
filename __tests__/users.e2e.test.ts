@@ -107,4 +107,8 @@ describe("/users", () => {
         await req.delete(SET.PATH.USERS + "/1").set({"Authorization": "Basic cisaB"}).expect(401);
         await getUser.expect(200, pageData([user1, user2, user3]));
     });
+    
+    it("не должен удалить несуществующего пользователя", async () => {
+        await req.delete(SET.PATH.USERS + "/-1").set(auth).expect(404);
+    });
 });
