@@ -87,13 +87,13 @@ describe("/users", () => {
         expect(new Date(user1.createdAt).getTime()).not.toBeNaN();
         
         user2 = (await req.post(SET.PATH.USERS).set(auth).send(corrUser2).expect(201)).body;
-        expect(user2.id).toBe("1");
+        expect(user2.id).toBe("2");
         expect(user2.login).toBe(corrUser2.login);
         expect(user2.email).toBe(corrUser2.email);
         expect(new Date(user2.createdAt).getTime()).not.toBeNaN();
         
         user3 = (await req.post(SET.PATH.USERS).set(auth).send(corrUser3).expect(201)).body;
-        expect(user3.id).toBe("1");
+        expect(user3.id).toBe("3");
         expect(user3.login).toBe(corrUser3.login);
         expect(user3.email).toBe(corrUser3.email);
         expect(new Date(user3.createdAt).getTime()).not.toBeNaN();
