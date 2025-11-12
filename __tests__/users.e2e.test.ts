@@ -33,6 +33,7 @@ describe("/users", () => {
         await req.post(SET.PATH.USERS).set({"Auth": "Basic cisaB"}).send(corrUser1).expect(401);
         await req.post(SET.PATH.USERS).set({"Authorization": "Vazic cisaB"}).send(corrUser1).expect(401);
         await req.post(SET.PATH.USERS).set({"Authorization": "Basic cisaB"}).send(corrUser1).expect(401);
+        
         await getUser.expect(200, pageData());
     });
     
@@ -105,10 +106,19 @@ describe("/users", () => {
         await req.delete(SET.PATH.USERS + "/1").set({"Auth": "Basic cisaB"}).expect(401);
         await req.delete(SET.PATH.USERS + "/1").set({"Authorization": "Vazic cisaB"}).expect(401);
         await req.delete(SET.PATH.USERS + "/1").set({"Authorization": "Basic cisaB"}).expect(401);
+        
         await getUser.expect(200, pageData([user1, user2, user3]));
     });
     
     it("не должен удалить несуществующего пользователя", async () => {
         await req.delete(SET.PATH.USERS + "/-1").set(auth).expect(404);
+    });
+    
+    it("должен удалить существующего пользователя", async () => {
+        await req.delete(SET.PATH.USERS + "/1").set(auth).expect(204);
+        await req.delete(SET.PATH.USERS + "/2").set(auth).expect(204);
+        await req.delete(SET.PATH.USERS + "/3").set(auth).expect(204);
+        
+        await getUser.expect(200, pageData());
     });
 });
