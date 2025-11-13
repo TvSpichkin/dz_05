@@ -101,6 +101,12 @@ describe("/users", () => {
         await getUser.expect(200, pageData([user1, user2, user3]));
     });
     
+    it("не должен подтверждать подлинность пользователя c неправильными входными данными", async () => {
+        const user = corrUser1;
+        
+        await req.post(SET.PATH.AUTH).expect(400);
+    });
+    
     it("не должен удалить пользователя без авторизации и должен вернуть 401", async () => {
         await req.delete(SET.PATH.USERS + "/1").expect(401);
         await req.delete(SET.PATH.USERS + "/1").set({"Auth": "Basic cisaB"}).expect(401);
