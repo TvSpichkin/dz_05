@@ -105,6 +105,8 @@ describe("/users", () => {
         const user = corrUser1;
         
         await req.post(SET.PATH.AUTH).expect(400);
+        
+        await req.post(SET.PATH.AUTH).send().expect(400);
     });
     
     it("не должен удалить пользователя без авторизации и должен вернуть 401", async () => {
