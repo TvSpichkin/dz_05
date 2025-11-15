@@ -105,10 +105,16 @@ describe("/users", () => {
         const user = corrUser1;
         
         await req.post(SET.PATH.AUTH).expect(400);
-        
         await req.post(SET.PATH.AUTH).send().expect(400);
-        
         await req.post(SET.PATH.AUTH).send({название: 0}).expect(400);
+        
+        await req.post(SET.PATH.AUTH).set(auth).send({...user, loginOrEmail: undefined}).expect(400);
+        await req.post(SET.PATH.AUTH).set(auth).send({...user, loginOrEmail: 0}).expect(400);
+        await req.post(SET.PATH.AUTH).set(auth).send({...user, loginOrEmail: bigStr(7)}).expect(400);
+        await req.post(SET.PATH.AUTH).set(auth).send({...user, loginOrEmail: bigStr(11, 1)}).expect(400);
+        await req.post(SET.PATH.AUTH).set(auth).send({...user, loginOrEmail: bigStr(2, 1)}).expect(400);
+        await req.post(SET.PATH.AUTH).set(auth).send({...user, loginOrEmail: "    "}).expect(400);
+        await req.post(SET.PATH.AUTH).set(auth).send({...user, loginOrEmail: "de.fg"}).expect(400);
     });
     
     it("не должен удалить пользователя без авторизации и должен вернуть 401", async () => {
