@@ -107,6 +107,8 @@ describe("/users", () => {
         await req.post(SET.PATH.AUTH).expect(400);
         
         await req.post(SET.PATH.AUTH).send().expect(400);
+        
+        await req.post(SET.PATH.AUTH).send({название: 0}).expect(400);
     });
     
     it("не должен удалить пользователя без авторизации и должен вернуть 401", async () => {
