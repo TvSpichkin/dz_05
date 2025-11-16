@@ -115,6 +115,13 @@ describe("/users", () => {
         await req.post(SET.PATH.AUTH).set(auth).send({...user, loginOrEmail: bigStr(2, 1)}).expect(400);
         await req.post(SET.PATH.AUTH).set(auth).send({...user, loginOrEmail: "    "}).expect(400);
         await req.post(SET.PATH.AUTH).set(auth).send({...user, loginOrEmail: "de.fg"}).expect(400);
+        
+        await req.post(SET.PATH.AUTH).set(auth).send({...user, loginOrEmail: "ё@e.fg"}).expect(400);
+        await req.post(SET.PATH.AUTH).set(auth).send({...user, loginOrEmail: "d@ё.fg"}).expect(400);
+        await req.post(SET.PATH.AUTH).set(auth).send({...user, loginOrEmail: "d@e.ёg"}).expect(400);
+        await req.post(SET.PATH.AUTH).set(auth).send({...user, loginOrEmail: "d@e.f"}).expect(400);
+        await req.post(SET.PATH.AUTH).set(auth).send({...user, loginOrEmail: "d@e.fghij"}).expect(400);
+        await req.post(SET.PATH.AUTH).set(auth).send({...user, loginOrEmail: "d@efg"}).expect(400);
     });
     
     it("не должен удалить пользователя без авторизации и должен вернуть 401", async () => {
