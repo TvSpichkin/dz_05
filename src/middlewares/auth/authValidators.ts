@@ -6,7 +6,7 @@ import {inputCheckErrorsMiddleware} from "../global/inputCheckErrorsMiddleware";
 
 
 async function loginOrEmailValidator(req: ReqBody<LoginInputModel>, res: Response, next: NextFunction) {
-    if(req.body.loginOrEmail.includes('@')) await emailValidator("loginOrEmail").run(req);
+    if(req.body && req.body.loginOrEmail && req.body.loginOrEmail.includes('@')) await emailValidator("loginOrEmail").run(req);
     else await loginValidator("loginOrEmail").run(req); // Условная развилка в зависимости от содержания символа '@'
     
     next(); // Передача управления дальше
