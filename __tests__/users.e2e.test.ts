@@ -102,7 +102,7 @@ describe("/users", () => {
     });
     
     it("не должен подтверждать подлинность пользователя c неправильными входными данными", async () => {
-        const user = corrUser1;
+        const user = {...corrUser1, loginOrEmail: corrUser1.login};
         
         await req.post(SET.PATH.AUTH).expect(400);
         await req.post(SET.PATH.AUTH).send().expect(400);
@@ -123,6 +123,13 @@ describe("/users", () => {
         await req.post(SET.PATH.AUTH).set(auth).send({...user, loginOrEmail: "d@e.fghij"}).expect(400);
         await req.post(SET.PATH.AUTH).set(auth).send({...user, loginOrEmail: "d@efg"}).expect(400);
         
+        await req.post(SET.PATH.AUTH).set(auth).send({...user, password: undefined}).expect(400);
+        await req.post(SET.PATH.AUTH).set(auth).send({...user, password: 0}).expect(400);
+        await req.post(SET.PATH.AUTH).set(auth).send({...user, password: bigStr(21)}).expect(400);
+        await req.post(SET.PATH.AUTH).set(auth).send({...user, password: bigStr(5)}).expect(400);
+        await req.post(SET.PATH.AUTH).set(auth).send({...user, password: "        "}).expect(400);
+        
+        user.loginOrEmail = corrUser1.email;
         await req.post(SET.PATH.AUTH).set(auth).send({...user, password: undefined}).expect(400);
         await req.post(SET.PATH.AUTH).set(auth).send({...user, password: 0}).expect(400);
         await req.post(SET.PATH.AUTH).set(auth).send({...user, password: bigStr(21)}).expect(400);
