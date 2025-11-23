@@ -138,7 +138,20 @@ describe("/users", () => {
     });
     
     it("не должен подтверждать подлинность пользователя c неправильными учетными данными и должен вернуть 401", async () => {
+        const user = {loginOrEmail: corrUser1.login, password: corrUser2.password};
+        
         await req.post(SET.PATH.AUTH).send({loginOrEmail: "loe", password: "password"}).expect(401);
+        await req.post(SET.PATH.AUTH).send(user).expect(401);
+        user.password = corrUser3.password;
+        await req.post(SET.PATH.AUTH).send(user).expect(401);
+        user.loginOrEmail = corrUser2.email;
+        await req.post(SET.PATH.AUTH).send(user).expect(401);
+        user.password = corrUser1.password;
+        await req.post(SET.PATH.AUTH).send(user).expect(401);
+        user.loginOrEmail = corrUser3.login;
+        await req.post(SET.PATH.AUTH).send(user).expect(401);
+        user.password = corrUser2.password;
+        await req.post(SET.PATH.AUTH).send(user).expect(401);
     });
     
     it("не должен удалить пользователя без авторизации и должен вернуть 401", async () => {
