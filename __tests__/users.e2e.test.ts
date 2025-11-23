@@ -154,6 +154,12 @@ describe("/users", () => {
         await req.post(SET.PATH.AUTH).send(user).expect(401);
     });
     
+    it("должен подтвердить подлинность пользователя c правильными учетными данными", async () => {
+        await req.post(SET.PATH.AUTH).send({loginOrEmail: corrUser1.login, password: corrUser1.password}).expect(204);
+        await req.post(SET.PATH.AUTH).send({loginOrEmail: corrUser2.login, password: corrUser2.password}).expect(204);
+        await req.post(SET.PATH.AUTH).send({loginOrEmail: corrUser3.login, password: corrUser3.password}).expect(204);
+    });
+    
     it("не должен удалить пользователя без авторизации и должен вернуть 401", async () => {
         await req.delete(SET.PATH.USERS + "/1").expect(401);
         await req.delete(SET.PATH.USERS + "/1").set({"Auth": "Basic cisaB"}).expect(401);
