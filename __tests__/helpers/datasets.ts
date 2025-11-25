@@ -5,6 +5,7 @@ import {PostInputModel} from "../../src/present/routes/posts/types/postsTypes";
 import {UserInputModel} from "../../src/present/routes/users/types/usersTypes";
 import {BlogDbType} from "../../src/db/types/blogsDbTypes";
 import {PostDbType} from "../../src/db/types/postsDbTypes";
+import {UserDbType} from "../../src/db/types/usersDbTypes";
 import {DBType} from "../../src/db/types/typesRepDB";
 
 
@@ -85,6 +86,17 @@ function createPostBD(i: number, b: number): PostDbType {
         createdAt: new Date().getTime() + i - 1 // Дата создания
     };
 } // Создание сетевого журнала для БД
+
+function createUserBD(i: number): UserDbType {
+    return {
+        id: i, // Идентификатор
+        userName: "Имя пользователя " + i, // Имя пользователя; максимальная длина: 10, минимальная длина: 3, шаблон: ^[a-zA-Z0-9_-]*$, должен быть уникальным
+        email: "Почта " + i, // Почта; шаблон: ^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$, должна быть уникальной
+        passwordHash: "" + i, // Контрольная сумма пароля
+        passwordSalt: "" + i, // Соль пароля
+        createdAt: new Date().getTime() + i - 1 // Дата создания
+    };
+} // Создание пользователя для БД
 
 export function createDataSet(b: number, p: number = 0): DBType {
     const dataset: DBType = {
