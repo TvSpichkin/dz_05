@@ -178,7 +178,7 @@ describe("/blogs", () => {
     
     it("должен вернуть 200 и нужный набор сетевых журналов по запросу", async () => {
         const totalCount = 100, // Количество сетевых журналов в тестовом наборе
-        DBmem = createDataSet(totalCount), // Создание тестового набора
+        DBmem = await createDataSet(totalCount), // Создание тестового набора
         memBlogs = await Promise.all(DBmem.blogs.map(blogMaper).reverse()); // Выходные сетевые журналы из тестового набора
         var tempBlogs = memBlogs.slice(0, 10); // Временные сетевые журналы для сравнения
         //console.log(memBlogs.filter(x => /0/.test(x.name)));

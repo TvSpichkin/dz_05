@@ -7,6 +7,7 @@ import {BlogDbType} from "../../src/db/types/blogsDbTypes";
 import {PostDbType} from "../../src/db/types/postsDbTypes";
 import {UserDbType} from "../../src/db/types/usersDbTypes";
 import {DBType} from "../../src/db/types/typesRepDB";
+import {genSalt, genHash} from "../../src/domain/tools/methodsCrypt";
 
 
 export const auth = {"Authorization": "Basic " + fromUTF8ToBase64(SET.ADMIN)}; // Получение base64 строки авторизации
@@ -87,18 +88,20 @@ function createPostBD(i: number, b: number): PostDbType {
     };
 } // Создание сетевого журнала для БД
 
-function createUserBD(i: number): UserDbType {
+async function createUserBD(i: number): Promise<UserDbType> {
+    const s = await genSalt();
+    
     return {
         id: i, // Идентификатор
-        userName: "Имя пользователя " + i, // Имя пользователя; максимальная длина: 10, минимальная длина: 3, шаблон: ^[a-zA-Z0-9_-]*$, должен быть уникальным
-        email: "Почта " + i, // Почта; шаблон: ^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$, должна быть уникальной
-        passwordHash: "" + i, // Контрольная сумма пароля
-        passwordSalt: "" + i, // Соль пароля
+        userName: "Name" + i, // Имя пользователя; максимальная длина: 10, минимальная длина: 3, шаблон: ^[a-zA-Z0-9_-]*$, должен быть уникальным
+        email: "address" + i + "@email.web.site", // Почта; шаблон: ^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$, должна быть уникальной
+        passwordHash: await genHash("Пароль " + i, s), // Контрольная сумма пароля
+        passwordSalt: s, // Соль пароля
         createdAt: new Date().getTime() + i - 1 // Дата создания
     };
 } // Создание пользователя для БД
 
-export function createDataSet(b: number, p: number = 0): DBType {
+export async function createDataSet(b: number, p: number = 0): Promise<DBType> {
     const dataset: DBType = {
         blogs: [], // Массив сетевых журналов
         posts: [], // Массив записей
@@ -108,6 +111,7 @@ export function createDataSet(b: number, p: number = 0): DBType {
     
     for(i = 1; i <= b; i++) dataset.blogs.push(createBlogBD(i));
     for(i = 1; i <= p; i++) dataset.posts.push(createPostBD(i, b));
+    for(i = 1; i <= b; i++) dataset.users.push(await createUserBD(i));
     
     return dataset;
 } // Создание набора данных
