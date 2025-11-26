@@ -186,11 +186,10 @@ describe("/posts", () => {
     it("должен вернуть 200 и нужный набор записей по запросу", async () => {
         const totalBlogCount = 5, // Количество сетевых журналов в тестовом наборе
         totalCount = 100, // Количество записей в тестовом наборе
-        DBmem = await createDataSet({b: totalBlogCount, p: totalCount}); // Создание тестового набора
-        await setDB(DBmem); // Заполнение базы данных
-        const memPosts = await Promise.all(maperDBM.posts(DBmem).reverse()); // Выходные записи из тестового набора
+        DBmem = await createDataSet({b: totalBlogCount, p: totalCount}), // Создание тестового набора
+        memPosts = await Promise.all(maperDBM.posts(DBmem).reverse()); // Выходные записи из тестового набора
         var tempPosts = memPosts.slice(0, 10); // Временные записи для сравнения
-        //console.log(memPosts);
+        await setDB(DBmem); // Заполнение базы данных
         
         await getPost.expect(200, pageData(tempPosts, 1, 10, totalCount));
         await queryPost().expect(200, pageData(tempPosts, 1, 10, totalCount));

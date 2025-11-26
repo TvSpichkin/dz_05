@@ -190,7 +190,6 @@ describe("/users", () => {
         DBmem = await createDataSet({u: totalCount}), // Создание тестового набора
         memUsers = await Promise.all(DBmem.users.map(userMaper).reverse()); // Выходные пользователи из тестового набора
         var tempUsers = memUsers.slice(0, 10); // Временные пользователи для сравнения
-        //console.log(memUsers.filter(x => /0/.test(x.name)));
         await setDB(DBmem); // Заполнение базы данных
         
         await getUser.expect(200, pageData(tempUsers, 1, 10, totalCount));

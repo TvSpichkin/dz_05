@@ -181,7 +181,6 @@ describe("/blogs", () => {
         DBmem = await createDataSet({b: totalCount}), // Создание тестового набора
         memBlogs = await Promise.all(DBmem.blogs.map(blogMaper).reverse()); // Выходные сетевые журналы из тестового набора
         var tempBlogs = memBlogs.slice(0, 10); // Временные сетевые журналы для сравнения
-        //console.log(memBlogs.filter(x => /0/.test(x.name)));
         await setDB(DBmem); // Заполнение базы данных
         
         await getBlog.expect(200, pageData(tempBlogs, 1, 10, totalCount));
