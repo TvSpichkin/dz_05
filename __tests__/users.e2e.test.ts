@@ -3,7 +3,8 @@ import {runDB, stopDB} from "../src/db/db";
 import {setDB} from "../src/db/repository/testing/setDB";
 import {req, getUser, pageData} from "./helpers/test-helpers";
 import {SET} from "../src/settings";
-import {auth, bigStr, corrUser1, corrUser2, corrUser3} from "./helpers/datasets";
+import {auth, bigStr, corrUser1, corrUser2, corrUser3, createDataSet} from "./helpers/datasets";
+import {userMaper} from "../src/db/mapers/userMaper";
 
 
 describe("/users", () => {
@@ -182,5 +183,16 @@ describe("/users", () => {
         await req.delete(SET.PATH.USERS + "/3").set(auth).expect(204);
         
         await getUser.expect(200, pageData());
+    });
+    
+    it("должен вернуть 200 и нужный набор пользователей по запросу", async () => {
+        const totalCount = 100, // Количество пользователей в тестовом наборе
+        DBmem = await createDataSet({u: totalCount}), // Создание тестового набора
+        memUsers = await Promise.all(DBmem.users.map(userMaper).reverse()); // Выходные пользователи из тестового набора
+        var tempUsers = memUsers.slice(0, 10); // Временные пользователи для сравнения
+        //console.log(memUsers.filter(x => /0/.test(x.name)));
+        await setDB(DBmem); // Заполнение базы данных
+        
+        await getUser.expect(200, pageData(tempUsers, 1, 10, totalCount));
     });
 });
