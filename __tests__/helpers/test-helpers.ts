@@ -18,6 +18,10 @@ export function queryPost(q: string = ""): typeof getPost {
     return req.get(SET.PATH.POSTS + "?" + q);
 } // Запрос на получение всех записей с вопросом
 
+export function queryUser(q: string = ""): typeof getUser {
+    return req.get(SET.PATH.USERS + "?" + q);
+} // Запрос на получение всех пользователей с вопросом
+
 export function pageData<T>(i: T[] = [], p: number = 1, ps: number = 10, tc: number = i.length): Paginator<T> {
     return {
         pagesCount: Math.ceil(tc/ps), // Количество страниц
