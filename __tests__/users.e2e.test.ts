@@ -1,7 +1,7 @@
 import {UserViewModel} from "../src/present/routes/users/types/usersTypes";
 import {runDB, stopDB} from "../src/db/db";
 import {setDB} from "../src/db/repository/testing/setDB";
-import {req, getUser, pageData} from "./helpers/test-helpers";
+import {req, getUser, pageData, queryUser} from "./helpers/test-helpers";
 import {SET} from "../src/settings";
 import {auth, bigStr, corrUser1, corrUser2, corrUser3, createDataSet} from "./helpers/datasets";
 import {userMaper} from "../src/db/mapers/userMaper";

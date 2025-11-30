@@ -8,6 +8,7 @@ import {PostDbType} from "../../src/db/types/postsDbTypes";
 import {UserDbType} from "../../src/db/types/usersDbTypes";
 import {DBType} from "../../src/db/types/typesRepDB";
 import {genSalt, genHash} from "../../src/domain/tools/methodsCrypt";
+import {arrHash} from "./userHashDatasets";
 
 
 export const auth = {"Authorization": "Basic " + fromUTF8ToBase64(SET.ADMIN)}; // Получение base64 строки авторизации
@@ -89,14 +90,12 @@ function createPostBD(i: number, b: number): PostDbType {
 } // Создание сетевого журнала для БД
 
 async function createUserBD(i: number): Promise<UserDbType> {
-    const s = await genSalt();
-    
     return {
         id: i, // Идентификатор
         userName: "Name" + i, // Имя пользователя; максимальная длина: 10, минимальная длина: 3, шаблон: ^[a-zA-Z0-9_-]*$, должен быть уникальным
         email: "address" + i + "@email.web.site", // Почта; шаблон: ^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$, должна быть уникальной
-        passwordHash: await genHash("Пароль " + i, s), // Контрольная сумма пароля
-        passwordSalt: s, // Соль пароля
+        passwordHash: arrHash[i - 1], // Контрольная сумма пароля
+        passwordSalt: "Соль №"+ '0'.repeat(16 - Math.log10(i + 1)|0) + i, // Соль пароля
         createdAt: new Date().getTime() + i - 1 // Дата создания
     };
 } // Создание пользователя для БД
