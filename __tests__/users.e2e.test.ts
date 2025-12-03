@@ -187,7 +187,7 @@ describe("/users", () => {
     
     it("должен вернуть 200 и нужный набор пользователей по запросу", async () => {
         const totalCount = 100, // Количество пользователей в тестовом наборе
-        DBmem = await createDataSet({u: totalCount}), // Создание тестового набора
+        DBmem = createDataSet({u: totalCount}), // Создание тестового набора
         memUsers = await Promise.all(DBmem.users.map(userMaper).reverse()); // Выходные пользователи из тестового набора
         var tempUsers = memUsers.slice(0, 10); // Временные пользователи для сравнения
         await setDB(DBmem); // Заполнение базы данных

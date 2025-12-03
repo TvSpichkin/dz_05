@@ -186,7 +186,7 @@ describe("/posts", () => {
     it("должен вернуть 200 и нужный набор записей по запросу", async () => {
         const totalBlogCount = 5, // Количество сетевых журналов в тестовом наборе
         totalCount = 100, // Количество записей в тестовом наборе
-        DBmem = await createDataSet({b: totalBlogCount, p: totalCount}), // Создание тестового набора
+        DBmem = createDataSet({b: totalBlogCount, p: totalCount}), // Создание тестового набора
         memPosts = await Promise.all(maperDBM.posts(DBmem).reverse()); // Выходные записи из тестового набора
         var tempPosts = memPosts.slice(0, 10); // Временные записи для сравнения
         await setDB(DBmem); // Заполнение базы данных

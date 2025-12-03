@@ -89,7 +89,7 @@ function createPostBD(i: number, b: number): PostDbType {
     };
 } // Создание сетевого журнала для БД
 
-async function createUserBD(i: number): Promise<UserDbType> {
+function createUserBD(i: number): UserDbType {
     return {
         id: i, // Идентификатор
         userName: "Name" + i, // Имя пользователя; максимальная длина: 10, минимальная длина: 3, шаблон: ^[a-zA-Z0-9_-]*$, должен быть уникальным
@@ -100,7 +100,7 @@ async function createUserBD(i: number): Promise<UserDbType> {
     };
 } // Создание пользователя для БД
 
-export async function createDataSet({b = 0, p = 0, u = 0}): Promise<DBType> {
+export function createDataSet({b = 0, p = 0, u = 0}): DBType {
     const dataset: DBType = {
         blogs: [], // Массив сетевых журналов
         posts: [], // Массив записей
@@ -110,7 +110,7 @@ export async function createDataSet({b = 0, p = 0, u = 0}): Promise<DBType> {
     
     for(i = 1; i <= b; i++) dataset.blogs.push(createBlogBD(i));
     for(i = 1; i <= p; i++) dataset.posts.push(createPostBD(i, b));
-    for(i = 1; i <= u; i++) dataset.users.push(await createUserBD(i));
+    for(i = 1; i <= u; i++) dataset.users.push(createUserBD(i));
     
     return dataset;
 } // Создание набора данных
