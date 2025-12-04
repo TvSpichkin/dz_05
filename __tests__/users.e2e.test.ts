@@ -193,5 +193,8 @@ describe("/users", () => {
         await setDB(DBmem); // Заполнение базы данных
         
         await getUser.expect(200, pageData(tempUsers, 1, 10, totalCount));
+        await queryUser().expect(200, pageData(tempUsers, 1, 10, totalCount));
+        tempUsers = memUsers.filter(x => /0/.test(x.login));
+        await queryUser("searchLoginTerm=0").expect(200, pageData(tempUsers.slice(0, 10), 1, 10, tempUsers.length));
     });
 });
