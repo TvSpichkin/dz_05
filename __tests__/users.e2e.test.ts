@@ -196,5 +196,7 @@ describe("/users", () => {
         await queryUser().expect(200, pageData(tempUsers, 1, 10, totalCount));
         tempUsers = memUsers.filter(x => /0/.test(x.login));
         await queryUser("searchLoginTerm=0").expect(200, pageData(tempUsers.slice(0, 10), 1, 10, tempUsers.length));
+        tempUsers = memUsers.filter(x => /1/.test(x.email));
+        await queryUser("searchEmailTerm=1").expect(200, pageData(tempUsers.slice(0, 10), 1, 10, tempUsers.length));
     });
 });
