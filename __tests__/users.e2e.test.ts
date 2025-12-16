@@ -200,5 +200,8 @@ describe("/users", () => {
         await queryUser("searchEmailTerm=1").expect(200, pageData(tempUsers.slice(0, 10), 1, 10, tempUsers.length));
         tempUsers = [...memUsers].reverse().slice(0, 10);
         await queryUser("sortBy=id&sortDirection=asc").expect(200, pageData(tempUsers, 1, 10, totalCount));
+        tempUsers = memUsers.slice(10, 20);
+        await queryUser("pageNumber=2").expect(200, pageData(tempUsers, 2, 10, totalCount));
+        tempUsers = memUsers.slice(0, 7);
     });
 });
