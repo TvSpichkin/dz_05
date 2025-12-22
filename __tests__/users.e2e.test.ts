@@ -203,5 +203,7 @@ describe("/users", () => {
         tempUsers = memUsers.slice(10, 20);
         await queryUser("pageNumber=2").expect(200, pageData(tempUsers, 2, 10, totalCount));
         tempUsers = memUsers.slice(0, 7);
+        await queryUser("pageSize=7").expect(200, pageData(tempUsers, 1, 7, totalCount));
+        tempUsers = memUsers.filter(x => /1/.test(x.login) || /0/.test(x.email)).reverse();
     });
 });
