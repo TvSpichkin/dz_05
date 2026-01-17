@@ -1,14 +1,13 @@
-import {TypeUserFields} from "../../../present/routes/users/types/usersTypes";
+import {userDbFields, UserDbType} from "../../types/usersDbTypes";
 import {TypeSortDir} from "../../../present/types/queryTypes";
 import {ProtoFilterType} from "../../../tools/types/typePFilt";
-import {UserDbType} from "../../types/usersDbTypes";
 import {joinFilters} from "../../tools/methodsFilter";
 import {createSorter} from "../../tools/createSorter";
 import {usersColl} from "../../db";
 
 
 export const usersQueryRep = {
-    async readAll(es: number, ps: number, sb: TypeUserFields, sd: TypeSortDir, stf: ProtoFilterType<UserDbType>[]): Promise<[number, UserDbType[]]> {
+    async readAll(es: number, ps: number, sb: userDbFields, sd: TypeSortDir, stf: ProtoFilterType<UserDbType>[]): Promise<[number, UserDbType[]]> {
         const filter = joinFilters(stf, "or"), // Создание поискового фильтра
         sorter = createSorter(sb, sd); // Создание сортировщика
         

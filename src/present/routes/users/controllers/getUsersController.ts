@@ -13,7 +13,7 @@ import {userMaper} from "../../../../db/mapers/userMaper";
 export async function getUsersController(req: ReqQuery<QueryUserInputModel>, res: Response<Paginator<UserViewModel>>) {
     const q = req.query,
     elemsSkip = q.pageSize*(q.pageNumber - 1), // Количество пропущенных элементов
-    sortBy = q.sortBy, // Задание исходного значения поля сортировки
+    sortBy = userDbFields[q.sortBy], // Задание исходного значения поля сортировки
     searchTermFilt: ProtoFilterType<UserDbType>[] = []; // Данные поискового термина для генерации фильтра
     
     if(q.searchLoginTerm) searchTermFilt.push(getPFilt(userDbFields.login, q.searchLoginTerm, 1)); // Добавление поискового запроса для имени пользователя
