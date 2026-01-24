@@ -13,7 +13,7 @@ import {postMaper} from "../../../../db/mapers/postMaper";
 export async function getPostsController(req: ReqParamQuery<BlogIdModel, QueryPostInputModel>, res: Response<Paginator<PostViewModel>>) {
     const q = req.query,
     elemsSkip = q.pageSize*(q.pageNumber - 1), // Количество пропущенных элементов
-    sortBy = q.sortBy, // Задание исходного значения поля сортировки
+    sortBy = postDbFields[q.sortBy], // Задание исходного значения поля сортировки
     blogIdFilt = req.params.id ? [getPFilt(postDbFields.blogId, +req.params.id)] : [], // Идентификатор сетевого журнала для генерации фильтра
     [totalCount, posts] = await postsQueryRep.readAll(elemsSkip, q.pageSize, sortBy, q.sortDirection, blogIdFilt); // Задание исходного значения поля сортировки
     
