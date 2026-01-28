@@ -1,14 +1,13 @@
-import {TypeBlogFields} from "../../../present/routes/blogs/types/blogsTypes";
+import {blogDbFields, BlogDbType} from "../../types/blogsDbTypes";
 import {TypeSortDir} from "../../../present/types/queryTypes";
 import {ProtoFilterType} from "../../../tools/types/typePFilt";
-import {BlogDbType} from "../../types/blogsDbTypes";
 import {createFilter} from "../../tools/methodsFilter";
 import {createSorter} from "../../tools/createSorter";
 import {blogsColl} from "../../db";
 
 
 export const blogsQueryRep = {
-    async readAll(es: number, ps: number, sb: TypeBlogFields, sd: TypeSortDir, snf: ProtoFilterType<BlogDbType>[]): Promise<[number, BlogDbType[]]> {
+    async readAll(es: number, ps: number, sb: blogDbFields, sd: TypeSortDir, snf: ProtoFilterType<BlogDbType>[]): Promise<[number, BlogDbType[]]> {
         const filter = createFilter(snf), // Создание поискового фильтра
         sorter = createSorter(sb, sd); // Создание сортировщика
         
