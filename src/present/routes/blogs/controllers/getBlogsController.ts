@@ -3,8 +3,8 @@ import {ReqQuery} from "../../../types/reqTypes";
 import {QueryBlogInputModel} from "../types/queryBlogTypes";
 import {Paginator, paginator} from "../../../tools/paginator";
 import {BlogViewModel} from "../types/blogsTypes";
-import {getPFilt} from "../../../../tools/methodPFilt";
 import {blogDbFields} from "../../../../db/types/blogsDbTypes";
+import {getPFilt} from "../../../../tools/methodPFilt";
 import {blogsQueryRep} from "../../../../db/repository/blogs/blogsQueryRep";
 import {blogMaper} from "../../../../db/mapers/blogMaper";
 
