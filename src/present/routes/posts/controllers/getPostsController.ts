@@ -4,8 +4,8 @@ import {BlogIdModel} from "../../blogs/types/blogsTypes";
 import {QueryPostInputModel} from "../types/queryPostTypes";
 import {Paginator, paginator} from "../../../tools/paginator";
 import {PostViewModel} from "../types/postsTypes";
-import {getPFilt} from "../../../../tools/methodPFilt";
 import {postDbFields} from "../../../../db/types/postsDbTypes";
+import {getPFilt} from "../../../../tools/methodPFilt";
 import {postsQueryRep} from "../../../../db/repository/posts/postsQueryRep";
 import {postMaper} from "../../../../db/mapers/postMaper";
 
